@@ -1,0 +1,5 @@
+Fondo Principal: #FAF7F2
+Superficies y Tarjetas: #EFE9DF
+Detalles y Bordes: #D8CFC4
+Acentos y Botones: #a38c74
+Texto Principal: #4A433A
