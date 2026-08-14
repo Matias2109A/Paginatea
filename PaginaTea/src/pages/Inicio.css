@@ -1,0 +1,108 @@
+.title {
+    font-size: 72px;
+    color: var(--acents);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infinite-img {
+    width: auto;
+    height: 2rem;
+    object-fit: cover;
+}
+
+.hero-ubi {
+    color: var(--color-princ);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    line-height: 16px;
+}
+
+.hero-desc {
+    color: var(--acents);
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.title-span {
+    color: var(--color-princ);
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 5rem 1rem 5rem 1rem;
+}
+
+.hero-btn{
+    font-family: "Nunito", sans-serif;
+    line-height: 24px;
+    font-size: 16px;    
+    border-radius: 20rem;
+}
+
+.conocemas {
+    background-color: var(--color-princ);
+    color: var(--bg-princ);
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+.guia {
+    background-color: var(--bg-princ);
+    color: var(--color-princ);
+    border: 1px solid var(--color-princ);
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+.hero-cards {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.hero-card {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 1rem;
+    justify-content: center;
+    border: 1px solid var(--bordes);
+    padding: 1rem;
+    background-color: var(--superf);
+    border-radius: 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.hero-card-title {
+    color: var(--color-princ);
+    font-size: 30px;
+    line-height: 36px;
+}
+
+.hero-card-desc {
+    color: var(--acents);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+}
+
+.card-1 {
+    color: #5B9BD5;
+}
+
+.card-3 {
+    color: #E8A838;
+}
+
+.card-4 {
+    color: #4ECDC4;
+}

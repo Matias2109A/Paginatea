@@ -1,0 +1,32 @@
+nav {
+    background-color: var(--color-princ);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 4.5rem;
+    width: 100%;
+    height: 4.5rem;
+}
+
+img {
+    width: 4rem;
+    height: 4rem;
+    margin: 10px;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 3rem
+}
+
+a {
+    text-decoration: none;
+    color: var(--bg-princ);
+    font-size: 14px;
+}
+
+
+
+
