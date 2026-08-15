@@ -16,6 +16,19 @@ body {
     background-color: var(--bg-princ);
 }
 
+html, body, #root {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 .lora-font {
   font-family: "Lora", serif;
   font-optical-sizing: auto;

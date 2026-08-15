@@ -27,6 +27,13 @@ a {
     font-size: 14px;
 }
 
+.nav-link {
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.6rem;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-
-
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
