@@ -25,5 +25,5 @@ createRoot(document.getElementById('root')).render(
     <Historia />
     <Neurodivergencia />
     <Fotter />
-  </StrictModeBrowserRouter>
+  </BrowserRouterStrictMode>
 )
