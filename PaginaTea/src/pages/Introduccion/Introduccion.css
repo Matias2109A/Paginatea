@@ -1,0 +1,27 @@
+.conteiner-introduccion {
+    background-color: var(--acents);
+    padding: 5rem 1rem 5rem 1rem;
+}
+
+.introduccion {
+    margin: 0rem 30.5rem 0rem 30.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.title-introduccion {
+    font-size: 3rem;
+    color: var(--bg-princ);
+    line-height: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.texto1, .texto2 {
+    color: var(--txt-contraste);
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    margin: 0rem 4rem 1rem 4rem;
+    text-align: center;
+}
