@@ -1,0 +1,112 @@
+.contactos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 5rem 1rem 6rem 1rem;
+}
+
+.contactos-title {
+    color: var(--acents);
+    font-size: 48px;
+    line-height: 52px;
+}
+
+.contactos-desc {
+    color: var(--color-princ);
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.contactos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 380px));
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    background-color: var(--superf);
+    border: 1px solid var(--bordes);
+    border-radius: 1rem;
+    padding: 1.25rem;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    border-radius: 0.75rem;
+}
+
+.contact-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.contact-icon--email {
+    background-color: #DCEBFA;
+    color: #5B9BD5;
+}
+
+.contact-icon--instagram {
+    background-color: #FBDDE9;
+    color: #E85A9E;
+}
+
+.contact-icon--facebook {
+    background-color: #DCEBFA;
+    color: #5B9BD5;
+}
+
+.contact-icon--phone {
+    background-color: #DAF2E4;
+    color: #4ECDC4;
+}
+
+.contact-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-princ);
+    margin-bottom: 0.25rem;
+}
+
+.contact-value {
+    font-size: 15px;
+    color: var(--acents);
+}
+
+.contactos-cta {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--color-princ);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.contactos-cta-title {
+    color: var(--bg-princ);
+    font-size: 22px;
+    margin-bottom: 0.5rem;
+}
+
+.contactos-cta-desc {
+    color: var(--bg-princ);
+    font-size: 16px;
+    line-height: 24px;
+    opacity: 0.9;
+}

@@ -1,6 +1,9 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Nav.css';
 
+const linkClass = ({ isActive }) =>
+    `nunito-btn-font nav-link${isActive ? ' active' : ''}`;
 
 
 export default function Nav({paginaActiva}) {
@@ -9,11 +12,10 @@ export default function Nav({paginaActiva}) {
             <nav>
                 <img src="../src/assets/logo.jpeg" alt="Logo" />
                 <ul>
-                    <a className={`nunito-btn-font ${paginaActiva === 'Inicio' ? 'nav-activo' : ''}`} href="/">Inicio</a>
-                    <a className={`nunito-btn-font ${paginaActiva === 'Blog' ? 'nav-activo' : ''}`} href="#">Blog</a>
-                    <a className={`nunito-btn-font ${paginaActiva === 'Eventos' ? 'nav-activo' : ''}`} href="#">Eventos</a>
-                    <a className={`nunito-btn-font ${paginaActiva === 'Contacto' ? 'nav-activo' : ''}`} href="#">Contacto</a>
-                    <a className={`nunito-btn-font ${paginaActiva === 'FAQ' ? 'nav-activo' : ''}`} href="#">FAQ</a>
+                    <NavLink className={linkClass} to="/" end>Inicio</NavLink>
+                    <NavLink className={linkClass} to="/blog">Blog</NavLink>
+                    <NavLink className={linkClass} to="/eventos">Eventos</NavLink>
+                    <NavLink className={linkClass} to="/contactos">Contactos</NavLink>
                 </ul>
             </nav>
         </header>

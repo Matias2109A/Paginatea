@@ -25,13 +25,15 @@ a {
     text-decoration: none;
     color: var(--bg-princ);
     font-size: 14px;
-    border-radius: .5rem;
-    padding: .5rem 1rem;
 }
 
-.nav-activo {
-    background-color: rgba(250, 247, 242, 0.18);
+.nav-link {
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.6rem;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-
-
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
