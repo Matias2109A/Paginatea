@@ -1,0 +1,64 @@
+.conteiner-historia {
+    padding: 5rem 1rem 5rem 1rem;
+}
+
+.historia {
+    margin: 0rem 26.5rem 0rem 26.5rem;
+    max-width: 64rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+}
+
+.historia-left {
+    position: relative;
+}
+
+
+.img-historia {
+    width: 30.5rem;
+    height: 22.8rem;
+    object-fit: cover;
+    border-radius: 1rem;
+
+}
+
+.cuadro-text-historia {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: var(--bg-princ);
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--color-princ);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+.txt-cuadro-img {
+    font-size: 1.125rem
+}
+
+.pre-title-historia {
+    text-transform: uppercase;
+    letter-spacing: .15rem;
+    color: var(--color-princ);
+    font-size: .75rem;
+}
+
+.title-historia {
+    font-size: 3rem;
+    line-height: 3rem;
+    color: var(--acents);
+    margin: .5rem 0rem .5rem 0rem;
+}
+
+.txt-historia-right {
+    font-size: 1rem;
+    line-height: 1.625rem;
+    color: var(--texto);
+    margin-top: 1rem;
+}

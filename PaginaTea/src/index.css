@@ -1,0 +1,76 @@
+:root {
+    --bg-princ: #FAF7F2;
+    --superf: #EFE9DF;
+    --bordes: #D8CFC4;
+    --color-princ: #A38C74;
+    --acents: #4A433A;
+    --texto: #7a6e64;
+    --txt-contraste: #C8BFB5;
+    --hover-color: #c2ab93;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-princ);
+}
+
+html, body, #root {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.lora-font {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.nunito-font {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+.nunito-btn-font {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.cargar-mas-btn {
+  display: block;
+  margin: 2rem auto 0 auto;
+  background-color: var(--bg-princ);
+  color: var(--color-princ);
+  border: 1px solid var(--color-princ);
+  border-radius: 20rem;
+  padding: 0.75rem 1.75rem;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cargar-mas-btn:hover {
+  background-color: var(--superf);
+}
+
+.cargar-mas-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
