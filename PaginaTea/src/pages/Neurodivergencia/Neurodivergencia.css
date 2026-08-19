@@ -2,6 +2,7 @@
     padding: 5rem 1rem 5rem 1rem;
     background-color: var(--superf);
     border: 1px solid rgba(0, 0, 0, .3);
+    overflow-x: hidden;
 }
 
 .neurodivergencia {
