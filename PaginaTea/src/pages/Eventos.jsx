@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import './Eventos.css'
 
-// URL de la API de Django. En producción, cambiar por la URL real del backend.
+// URL de la API de Django, cambiar por la URL real del backend.
 const API_URL = 'http://127.0.0.1:8000/api/eventos/'
+const SUSCRIBIRSE_URL = 'http://127.0.0.1:8000/api/eventos/suscribirse/'
 
 export default function Eventos() {
     const [eventos, setEventos] = useState([])
@@ -10,6 +11,11 @@ export default function Eventos() {
     const [cargandoMas, setCargandoMas] = useState(false)
     const [siguienteUrl, setSiguienteUrl] = useState(null)
     const [error, setError] = useState(null)
+
+    const [email, setEmail] = useState('')
+    const [suscribiendo, setSuscribiendo] = useState(false)
+    const [suscripto, setSuscripto] = useState(false)
+    const [errorSuscripcion, setErrorSuscripcion] = useState(null)
 
     useEffect(() => {
         cargarEventos()
@@ -56,6 +62,34 @@ export default function Eventos() {
         return horaStr?.slice(0, 5)
     }
 
+    async function handleSuscribirse(e) {
+        e.preventDefault()
+        if (!email.trim()) return
+
+        setSuscribiendo(true)
+        setErrorSuscripcion(null)
+        try {
+            const res = await fetch(SUSCRIBIRSE_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            })
+            const data = await res.json()
+            if (!res.ok) {
+                if (res.status === 429) {
+                    throw new Error('Demasiados intentos seguidos. Esperá un poco y volvé a intentar.')
+                }
+                const primerError = Object.values(data)[0]?.[0]
+                throw new Error(primerError || 'No pudimos activar la notificación. Intentá de nuevo.')
+            }
+            setSuscripto(true)
+        } catch (err) {
+            setErrorSuscripcion(err.message)
+        } finally {
+            setSuscribiendo(false)
+        }
+    }
+
     return (
         <main>
             <section className='eventos-container'>
@@ -64,6 +98,29 @@ export default function Eventos() {
                 <p className='nunito-font eventos-desc'>
                     Enterate de nuestras próximas juntadas, charlas y actividades.
                 </p>
+
+                {suscripto ? (
+                    <p className='nunito-font suscripcion-confirmada'>
+                        ✔️ ¡Listo! Te vamos a avisar por email cada vez que subamos un evento nuevo.
+                    </p>
+                ) : (
+                    <form className='suscripcion-form' onSubmit={handleSuscribirse}>
+                        <input
+                            className='nunito-font suscripcion-input'
+                            type="email"
+                            placeholder="Tu email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <button className='nunito-btn-font suscripcion-btn' type="submit" disabled={suscribiendo}>
+                            {suscribiendo ? 'Activando...' : 'Activar notificaciones'}
+                        </button>
+                    </form>
+                )}
+                {errorSuscripcion && (
+                    <p className='nunito-font suscripcion-error'>{errorSuscripcion}</p>
+                )}
             </section>
 
             <section className='pizarron-container'>
