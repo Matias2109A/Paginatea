@@ -1,6 +1,9 @@
+import logging
 from django.contrib import admin
 from django.utils import timezone
 from .models import Evento
+
+logger = logging.getLogger('tea_mo')
 
 
 class ProximidadFilter(admin.SimpleListFilter):
@@ -39,4 +42,5 @@ class EventoAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.pk:
             obj.creado_por = request.user
+            logger.info(f"Nuevo evento cargado: '{obj.titulo}' ({obj.fecha}) por {request.user.username}")
         super().save_model(request, obj, form, change)

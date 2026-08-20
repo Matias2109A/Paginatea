@@ -1,4 +1,3 @@
-# Panel de control
 from pathlib import Path
 from decouple import config
 
@@ -87,7 +86,50 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES': {
         # Cuántas preguntas puede enviar la misma IP en ese período.
-        # Formato: 'cantidad/periodo' asi 'second', 'minute', 'hour' o 'day'.
+        # Formato: 'cantidad/periodo' Formato: 'second', 'minute', 'hour' o 'day'.
         'preguntas_post': '5/hour',
+    },
+}
+
+#  Logs de la aplicación 
+import os
+LOGS_DIR = BASE_DIR / 'logs'
+os.makedirs(LOGS_DIR, exist_ok=True)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'detallado': {
+            'format': '[{asctime}] {levelname} — {name} — {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'archivo': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOGS_DIR / 'tea_mo.log',
+            'maxBytes': 5 * 1024 * 1024,  
+            'backupCount': 5,           
+            'formatter': 'detallado',
+        },
+        'consola': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'detallado',
+        },
+    },
+    'loggers': {
+        'tea_mo': {
+            'handlers': ['archivo', 'consola'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['archivo', 'consola'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
     },
 }

@@ -4,7 +4,7 @@ Descarguen el archivo .env que mande y ponganlo adentro de la carpeta tea_mo_bac
 
 
 En Vite 
-pnpm dev
+pnpm dev   /  npm run dev
 
 Para iniciar el Back-end 
 Dentro del venv ir a \PaginaTea\tea_mo_backend

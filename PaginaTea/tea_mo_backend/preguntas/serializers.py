@@ -1,7 +1,10 @@
-# Traduce python y JSON
+import logging
 from rest_framework import serializers
 from .models import Pregunta
 from .moderacion import validar_texto
+from .utils import obtener_ip, obtener_user_agent
+
+logger = logging.getLogger('tea_mo')
 
 class PreguntaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,14 +12,30 @@ class PreguntaSerializer(serializers.ModelSerializer):
         fields = ['id', 'autor_nombre', 'contenido', 'fecha_creacion', 'respuesta', 'fecha_respuesta']
         read_only_fields = ['respuesta', 'fecha_respuesta']
 
+    def _datos_peticion(self):
+        request = self.context.get('request')
+        if not request:
+            return 'desconocida', 'desconocido'
+        return obtener_ip(request), obtener_user_agent(request)
+
     def validate_autor_nombre(self, value):
-        error = validar_texto(value)
-        if error:
-            raise serializers.ValidationError(error)
+        resultado = validar_texto(value)
+        if resultado:
+            motivo, mensaje = resultado
+            ip, user_agent = self._datos_peticion()
+            logger.warning(
+                f"Nombre rechazado - Motivo: {motivo} - IP: {ip} - User-Agent: {user_agent} - Mensaje enviado: '{value[:300]}'"
+            )
+            raise serializers.ValidationError(mensaje)
         return value
 
     def validate_contenido(self, value):
-        error = validar_texto(value)
-        if error:
-            raise serializers.ValidationError(error)
+        resultado = validar_texto(value)
+        if resultado:
+            motivo, mensaje = resultado
+            ip, user_agent = self._datos_peticion()
+            logger.warning(
+                f"Pregunta rechazada - Motivo: {motivo} - IP: {ip} - User-Agent: {user_agent} - Mensaje enviado: '{value[:300]}'"
+            )
+            raise serializers.ValidationError(mensaje)
         return value

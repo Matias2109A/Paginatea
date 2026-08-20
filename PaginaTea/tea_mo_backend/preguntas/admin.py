@@ -1,12 +1,11 @@
-# Panel /admin/ para /preguntas
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.admin.models import LogEntry
 from django.utils import timezone
 from .models import Pregunta
 
 class SoloAccesoTotalMixin:
-    """Oculta esta sección del menú a menos que la cuenta sea de acceso total (superusuario)."""
     def has_module_permission(self, request):
         return request.user.is_superuser
 
@@ -22,8 +21,30 @@ admin.site.register(Group, GroupAdminRestringido)
 admin.site.unregister(User)
 admin.site.register(User, UserAdminRestringido)
 
+
+@admin.register(LogEntry)
+class RegistroDeAccionesAdmin(SoloAccesoTotalMixin, admin.ModelAdmin):
+
+    list_display = ('action_time', 'user', 'content_type', 'object_repr', 'accion')
+    list_filter = ('action_flag', 'user', 'content_type')
+    search_fields = ('object_repr', 'change_message')
+    ordering = ('-action_time',)
+
+    @admin.display(description="Acción")
+    def accion(self, obj):
+        return {1: "Creó", 2: "Editó", 3: "Borró"}.get(obj.action_flag, "—")
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
 class EstadoRespuestaFilter(admin.SimpleListFilter):
-    """Filtro simple para ver de un vistazo solo lo pendiente o lo ya respondido."""
     title = "Estado"
     parameter_name = "estado"
 
@@ -47,7 +68,9 @@ class PreguntaAdmin(admin.ModelAdmin):
     search_fields = ('autor_nombre', 'contenido')
     ordering = ('-fecha_creacion',)
 
+
     readonly_fields = ('autor_nombre', 'autor_email', 'contenido', 'fecha_creacion', 'respondido_por', 'fecha_respuesta')
+
 
     fieldsets = (
         ("Pregunta recibida", {
@@ -59,7 +82,7 @@ class PreguntaAdmin(admin.ModelAdmin):
         }),
         ("Datos de la respuesta (se completan solos)", {
             'fields': ('respondido_por', 'fecha_respuesta'),
-            'classes': ('collapse',),  
+            'classes': ('collapse',), 
         }),
     )
 

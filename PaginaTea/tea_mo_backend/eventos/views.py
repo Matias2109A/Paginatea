@@ -10,11 +10,7 @@ class EventosPagination(PageNumberPagination):
 
 
 class EventoListPublic(generics.ListAPIView):
-    """
-    Lista pública de eventos próximos, ordenados por fecha y hora.
-    Es solo lectura (GET): la carga de eventos se hace desde /admin/,
-    por cuentas de la organización con permiso para hacerlo.
-    """
+
     serializer_class = EventoSerializer
     permission_classes = [permissions.AllowAny]
     pagination_class = EventosPagination
