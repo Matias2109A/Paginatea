@@ -83,10 +83,15 @@
     border-radius: 1rem;
     padding: 1.25rem;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.evento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .evento-card-destacado {
-    border: 1.5px solid var(--color-princ);
     box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
 }
 

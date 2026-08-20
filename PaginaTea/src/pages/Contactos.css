@@ -38,6 +38,12 @@
     border: 1px solid var(--bordes);
     border-radius: 1rem;
     padding: 1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .contact-icon {
