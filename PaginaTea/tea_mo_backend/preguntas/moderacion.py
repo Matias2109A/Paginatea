@@ -1,12 +1,3 @@
-"""
-Reglas de moderación automática para las preguntas del Blog.
-
-Esto es un primer filtro, no reemplaza la revisión humana: agarra los casos
-obvios (insultos comunes, texto con demasiados símbolos raros) para que no
-lleguen a publicarse solos. Todo lo demás lo sigue viendo el staff desde
-/admin/.
-"""
-
 import re
 
 # Lista de palabras prohibidas, en minúscula y sin acentos.
