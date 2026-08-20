@@ -94,6 +94,13 @@
     border-color: var(--color-princ);
 }
 
+.pregunta-email-ayuda {
+    font-family: "Lora", serif;
+    font-size: 12px;
+    color: var(--color-princ);
+    margin-top: -0.35rem;
+}
+
 .pregunta-btn {
     background-color: var(--color-princ);
     color: var(--bg-princ);

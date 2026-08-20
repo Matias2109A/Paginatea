@@ -1,7 +1,10 @@
 import logging
 from django.contrib import admin
+from django.contrib.auth.models import Group, User
 from django.utils import timezone
-from .models import Evento
+from django.core.mail import EmailMessage
+from django.conf import settings
+from .models import Evento, SuscriptorEventos
 
 logger = logging.getLogger('tea_mo')
 
@@ -40,7 +43,57 @@ class EventoAdmin(admin.ModelAdmin):
     )
 
     def save_model(self, request, obj, form, change):
-        if not obj.pk:
+        es_nuevo = not obj.pk
+        if es_nuevo:
             obj.creado_por = request.user
-            logger.info(f"Nuevo evento cargado: '{obj.titulo}' ({obj.fecha}) por {request.user.username}")
         super().save_model(request, obj, form, change)
+
+        if es_nuevo:
+            logger.info(f"Nuevo evento cargado: '{obj.titulo}' ({obj.fecha}) por {request.user.username}")
+            self._avisar_suscriptores(obj)
+
+    def _avisar_suscriptores(self, evento):
+        emails = list(
+            SuscriptorEventos.objects.filter(activo=True).values_list('email', flat=True)
+        )
+        if not emails:
+            return
+
+        asunto = f"Nuevo evento en TEA-MO: {evento.titulo}"
+        cuerpo = (
+            f"Hola,\n\n"
+            f"Se publicó un nuevo evento en TEA-MO:\n\n"
+            f"{evento.titulo}\n"
+            f"Fecha: {evento.fecha.strftime('%d/%m/%Y')}\n"
+            f"Hora: {evento.hora.strftime('%H:%M')} hs\n"
+            f"Lugar: {evento.ubicacion}\n\n"
+            f"{evento.descripcion or ''}\n\n"
+            "Te llega este mensaje porque te suscribiste a las notificaciones de eventos "
+            "en nuestra web.\n\n"
+            "— Equipo TEA-MO"
+        )
+        try:
+            mensaje = EmailMessage(
+                asunto, cuerpo, settings.DEFAULT_FROM_EMAIL,
+                to=[settings.DEFAULT_FROM_EMAIL], bcc=emails,
+            )
+            mensaje.send(fail_silently=False)
+            logger.info(f"Notificación de evento '{evento.titulo}' enviada a {len(emails)} suscriptor(es)")
+        except Exception as e:
+            logger.error(f"No se pudo enviar la notificación del evento '{evento.titulo}': {e}")
+
+
+class SoloAccesoTotalMixin:
+    def has_module_permission(self, request):
+        return request.user.is_superuser
+
+
+@admin.register(SuscriptorEventos)
+class SuscriptorEventosAdmin(SoloAccesoTotalMixin, admin.ModelAdmin):
+    list_display = ('email', 'activo', 'fecha_alta')
+    list_filter = ('activo',)
+    search_fields = ('email',)
+    ordering = ('-fecha_alta',)
+
+    def has_add_permission(self, request):
+        return False

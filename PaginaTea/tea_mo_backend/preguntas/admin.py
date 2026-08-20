@@ -1,9 +1,14 @@
+import logging
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.admin.models import LogEntry
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import Pregunta
+
+logger = logging.getLogger('tea_mo')
 
 class SoloAccesoTotalMixin:
     def has_module_permission(self, request):
@@ -15,7 +20,6 @@ class GroupAdminRestringido(SoloAccesoTotalMixin, admin.ModelAdmin):
 class UserAdminRestringido(SoloAccesoTotalMixin, UserAdmin):
     pass
 
-
 admin.site.unregister(Group)
 admin.site.register(Group, GroupAdminRestringido)
 admin.site.unregister(User)
@@ -24,7 +28,6 @@ admin.site.register(User, UserAdminRestringido)
 
 @admin.register(LogEntry)
 class RegistroDeAccionesAdmin(SoloAccesoTotalMixin, admin.ModelAdmin):
-
     list_display = ('action_time', 'user', 'content_type', 'object_repr', 'accion')
     list_filter = ('action_flag', 'user', 'content_type')
     search_fields = ('object_repr', 'change_message')
@@ -71,7 +74,6 @@ class PreguntaAdmin(admin.ModelAdmin):
 
     readonly_fields = ('autor_nombre', 'autor_email', 'contenido', 'fecha_creacion', 'respondido_por', 'fecha_respuesta')
 
-
     fieldsets = (
         ("Pregunta recibida", {
             'fields': ('autor_nombre', 'autor_email', 'contenido', 'fecha_creacion'),
@@ -82,7 +84,7 @@ class PreguntaAdmin(admin.ModelAdmin):
         }),
         ("Datos de la respuesta (se completan solos)", {
             'fields': ('respondido_por', 'fecha_respuesta'),
-            'classes': ('collapse',), 
+            'classes': ('collapse',),  
         }),
     )
 
@@ -95,10 +97,34 @@ class PreguntaAdmin(admin.ModelAdmin):
         return bool(obj.respuesta)
 
     def save_model(self, request, obj, form, change):
-        if obj.respuesta and not obj.respondido_por:
+        es_primera_respuesta = bool(obj.respuesta) and not obj.respondido_por
+        if es_primera_respuesta:
             obj.respondido_por = request.user
             obj.fecha_respuesta = timezone.now()
         super().save_model(request, obj, form, change)
+
+        if es_primera_respuesta and obj.autor_email:
+            self._avisar_por_email(obj)
+
+    def _avisar_por_email(self, pregunta):
+        asunto = "Te respondimos tu pregunta en TEA-MO"
+        cuerpo = (
+            f"Hola {pregunta.autor_nombre},\n\n"
+            f"Respondimos la pregunta que nos dejaste:\n\n"
+            f"« {pregunta.contenido} »\n\n"
+            f"Nuestra respuesta:\n{pregunta.respuesta}\n\n"
+            "También podés verla en la sección Blog de nuestra web.\n\n"
+            "Gracias por escribirnos.\n"
+            "— Equipo TEA-MO"
+        )
+        try:
+            send_mail(
+                asunto, cuerpo, settings.DEFAULT_FROM_EMAIL,
+                [pregunta.autor_email], fail_silently=False,
+            )
+            logger.info(f"Email de respuesta enviado a {pregunta.autor_email} (pregunta id={pregunta.id})")
+        except Exception as e:
+            logger.error(f"No se pudo enviar el email de respuesta a {pregunta.autor_email}: {e}")
 
     def has_add_permission(self, request):
         return False

@@ -1,4 +1,3 @@
-# Tabla de /eventos
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -23,3 +22,17 @@ class Evento(models.Model):
 
     def __str__(self):
         return f"{self.titulo} — {self.fecha}"
+
+
+class SuscriptorEventos(models.Model):
+    email = models.EmailField(unique=True, verbose_name="Email")
+    activo = models.BooleanField(default=True, verbose_name="Activo")
+    fecha_alta = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de alta")
+
+    class Meta:
+        verbose_name = "Suscriptor a eventos"
+        verbose_name_plural = "Suscriptores a eventos"
+        ordering = ['-fecha_alta']
+
+    def __str__(self):
+        return self.email

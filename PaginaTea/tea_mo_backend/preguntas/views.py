@@ -8,7 +8,7 @@ from .utils import obtener_ip, obtener_user_agent
 logger = logging.getLogger('tea_mo')
 
 class PreguntaPostThrottle(throttling.AnonRateThrottle):
-    # El rate se define en settings.py, bajo DEFAULT_THROTTLE_RATES['preguntas_post']
+    # El rate se define en settings.py, en DEFAULT_THROTTLE_RATES['preguntas_post']
     scope = 'preguntas_post'
 
     def allow_request(self, request, view):

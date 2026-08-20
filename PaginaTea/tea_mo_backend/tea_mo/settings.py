@@ -75,6 +75,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
+EMAIL_HOST = config('EMAIL_HOST', default='')
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='TEA-MO <no-reply@tea-mo.org>')
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
@@ -86,12 +95,13 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES': {
         # Cuántas preguntas puede enviar la misma IP en ese período.
-        # Formato: 'cantidad/periodo' Formato: 'second', 'minute', 'hour' o 'day'.
+        # Formato: 'cantidad/periodo' -> 'second', 'minute', 'hour' o 'day'.
         'preguntas_post': '5/hour',
+        'suscripcion_eventos': '5/hour',
     },
 }
 
-#  Logs de la aplicación 
+
 import os
 LOGS_DIR = BASE_DIR / 'logs'
 os.makedirs(LOGS_DIR, exist_ok=True)
@@ -110,8 +120,8 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': LOGS_DIR / 'tea_mo.log',
-            'maxBytes': 5 * 1024 * 1024,  
-            'backupCount': 5,           
+            'maxBytes': 5 * 1024 * 1024,  # 5 MB por archivo
+            'backupCount': 5,             # guarda hasta 5 archivos viejos y borra el resto
             'formatter': 'detallado',
         },
         'consola': {

@@ -9,8 +9,11 @@ logger = logging.getLogger('tea_mo')
 class PreguntaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pregunta
-        fields = ['id', 'autor_nombre', 'contenido', 'fecha_creacion', 'respuesta', 'fecha_respuesta']
+        fields = ['id', 'autor_nombre', 'autor_email', 'contenido', 'fecha_creacion', 'respuesta', 'fecha_respuesta']
         read_only_fields = ['respuesta', 'fecha_respuesta']
+        extra_kwargs = {
+            'autor_email': {'write_only': True, 'required': False, 'allow_blank': True},
+        }
 
     def _datos_peticion(self):
         request = self.context.get('request')
@@ -24,7 +27,7 @@ class PreguntaSerializer(serializers.ModelSerializer):
             motivo, mensaje = resultado
             ip, user_agent = self._datos_peticion()
             logger.warning(
-                f"Nombre rechazado - Motivo: {motivo} - IP: {ip} - User-Agent: {user_agent} - Mensaje enviado: '{value[:300]}'"
+                f"Nombre rechazado — motivo: {motivo} — IP: {ip} — User-Agent: {user_agent} — mensaje enviado: '{value[:300]}'"
             )
             raise serializers.ValidationError(mensaje)
         return value
@@ -35,7 +38,7 @@ class PreguntaSerializer(serializers.ModelSerializer):
             motivo, mensaje = resultado
             ip, user_agent = self._datos_peticion()
             logger.warning(
-                f"Pregunta rechazada - Motivo: {motivo} - IP: {ip} - User-Agent: {user_agent} - Mensaje enviado: '{value[:300]}'"
+                f"Pregunta rechazada — motivo: {motivo} — IP: {ip} — User-Agent: {user_agent} — mensaje enviado: '{value[:300]}'"
             )
             raise serializers.ValidationError(mensaje)
         return value

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './Blog.css'
 
-// URL de la API de Django. En producción, cambiar por la URL real del backend.
+// URL de la API de Django. cambiar por la URL real del backend.
 const API_URL = 'http://127.0.0.1:8000/api/preguntas/'
 
 
@@ -27,11 +27,11 @@ export default function Blog() {
     const [siguienteUrl, setSiguienteUrl] = useState(null)
     const [errorCarga, setErrorCarga] = useState(null)
     const [errorEnvio, setErrorEnvio] = useState(null)
-    const [form, setForm] = useState({ nombre: '', pregunta: '' })
+    const [form, setForm] = useState({ nombre: '', email: '', pregunta: '' })
     const [enviando, setEnviando] = useState(false)
     const [openFaq, setOpenFaq] = useState(null)
 
-    // Trae las preguntas de la API al cargar la página.
+    // Trae las preguntas reales de la API al cargar la página.
     useEffect(() => {
         cargarPreguntas()
     }, [])
@@ -84,6 +84,7 @@ export default function Blog() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     autor_nombre: form.nombre,
+                    autor_email: form.email,
                     contenido: form.pregunta,
                 }),
             })
@@ -97,7 +98,7 @@ export default function Blog() {
                 throw new Error(primerError || 'No pudimos enviar tu pregunta. Intentá de nuevo.')
             }
             setPreguntas([data, ...preguntas])
-            setForm({ nombre: '', pregunta: '' })
+            setForm({ nombre: '', email: '', pregunta: '' })
         } catch (err) {
             setErrorEnvio(err.message)
         } finally {
@@ -142,6 +143,17 @@ export default function Blog() {
                         onChange={handleChange}
                         required
                     />
+                    <input
+                        className='nunito-font pregunta-input'
+                        type="email"
+                        name="email"
+                        placeholder="Tu email (opcional)"
+                        value={form.email}
+                        onChange={handleChange}
+                    />
+                    <p className='pregunta-email-ayuda'>
+                        Opcional: Dejanos tu email si querés que te avisemos por correo cuando te respondamos. Tu Email no se muestra públicamente.
+                    </p>
                     <textarea
                         className='nunito-font pregunta-textarea'
                         name="pregunta"

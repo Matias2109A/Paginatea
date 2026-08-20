@@ -27,6 +27,61 @@
     margin-top: 0.5rem;
 }
 
+.suscripcion-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 420px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.suscripcion-input {
+    flex: 1;
+    min-width: 200px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--acents);
+    background-color: var(--bg-princ);
+    border: 1px solid var(--bordes);
+    border-radius: 20rem;
+    padding: 0.65rem 1.1rem;
+}
+
+.suscripcion-input:focus {
+    outline: none;
+    border-color: var(--color-princ);
+}
+
+.suscripcion-btn {
+    background-color: var(--color-princ);
+    color: var(--bg-princ);
+    border: none;
+    border-radius: 20rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.suscripcion-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.suscripcion-confirmada {
+    margin-top: 1.5rem;
+    color: var(--color-princ);
+    font-size: 14px;
+}
+
+.suscripcion-error {
+    margin-top: 0.75rem;
+    color: #A33A3A;
+    font-size: 13px;
+}
+
 .eventos-error {
     display: flex;
     align-items: flex-start;
