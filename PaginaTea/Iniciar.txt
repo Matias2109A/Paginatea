@@ -1,0 +1,25 @@
+Para iniciar el proyecto tienen que tener las 2 terminales funcionando (Vite y Django)
+# Acuerdense de cambiar de rama y hacer toda en la de back-end o en lo posible crear una cada uno asi no le rompemos nada al otro ✌️
+Descarguen el archivo .env que mande y ponganlo adentro de la carpeta tea_mo_backend
+
+
+En Vite 
+pnpm dev   /  npm run dev
+
+Para iniciar el Back-end 
+Dentro del venv ir a \PaginaTea\tea_mo_backend
+python -m venv .venv    # Para crear el venv
+.venv\Scripts\Activate.ps1  # Activar el venv
+pip install -r requirements.txt  # Instalar dependencias 
+python manage.py migrate  # Aplicarlas
+python manage.py runserver # Ejecutar el back-end
+
+python manage.py createsuperuser   # Crear un superusuario
+
+!!! Tengan instalado python con Django dentro de un venv
+
+Abrir la pagina en http://localhost:5173
+Abrir el panel de admin en http://127.0.0.1:8000/admin
+
+
+

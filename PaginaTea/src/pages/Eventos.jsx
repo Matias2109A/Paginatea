@@ -1,53 +1,59 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Eventos.css'
 
-//(backend): estos son eventos de ejemplo, dejar vacío en producción.
-const eventosIniciales = []
+// URL de la API de Django. En producción, cambiar por la URL real del backend.
+const API_URL = 'http://127.0.0.1:8000/api/eventos/'
 
 export default function Eventos() {
-    const [eventos, setEventos] = useState(eventosIniciales)
-    const [form, setForm] = useState({ titulo: '', fecha: '', hora: '', ubicacion: '', descripcion: '' })
-    const [enviando, setEnviando] = useState(false)
+    const [eventos, setEventos] = useState([])
+    const [cargando, setCargando] = useState(true)
+    const [cargandoMas, setCargandoMas] = useState(false)
+    const [siguienteUrl, setSiguienteUrl] = useState(null)
+    const [error, setError] = useState(null)
 
-    //(backend): traer los eventos reales al cargar la página.
-   
-    function handleChange(e) {
-        setForm({ ...form, [e.target.name]: e.target.value })
+    useEffect(() => {
+        cargarEventos()
+    }, [])
+
+    async function cargarEventos() {
+        try {
+            setCargando(true)
+            const res = await fetch(API_URL)
+            if (!res.ok) throw new Error('No se pudieron cargar los eventos')
+            const data = await res.json()
+            setEventos(data.results)
+            setSiguienteUrl(data.next)
+            setError(null)
+        } catch (err) {
+            setError('No pudimos cargar los próximos eventos. Intentá de nuevo más tarde.')
+        } finally {
+            setCargando(false)
+        }
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault()
-        if (!form.titulo.trim() || !form.fecha || !form.hora || !form.ubicacion.trim()) return
-
-        setEnviando(true)
-
-        //(backend): reemplazar este bloque por el POST real, algo como:
-        // const res = await fetch('/api/eventos', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(form),
-        // })
-        // const nuevoEvento = await res.json()
-        // setEventos([nuevoEvento, ...eventos])
-
-        // --- Simulación temporal mientras no hay backend conectado ---
-        const nuevoEvento = { id: Date.now(), ...form }
-        setEventos([nuevoEvento, ...eventos].sort((a, b) => new Date(a.fecha) - new Date(b.fecha)))
-        // --- fin simulación ---
-
-        setForm({ titulo: '', fecha: '', hora: '', ubicacion: '', descripcion: '' })
-        setEnviando(false)
-    }
-
-    function handleDelete(id) {
-        //(backend): reemplazar por el DELETE real, algo como:
-
-        setEventos(eventos.filter((ev) => ev.id !== id))
+    async function cargarMasEventos() {
+        if (!siguienteUrl) return
+        try {
+            setCargandoMas(true)
+            const res = await fetch(siguienteUrl)
+            if (!res.ok) throw new Error('No se pudieron cargar más eventos')
+            const data = await res.json()
+            setEventos((prev) => [...prev, ...data.results])
+            setSiguienteUrl(data.next)
+        } catch (err) {
+            setError('No pudimos cargar más eventos. Intentá de nuevo más tarde.')
+        } finally {
+            setCargandoMas(false)
+        }
     }
 
     function formatearFecha(fechaStr) {
         const fecha = new Date(fechaStr + 'T00:00:00')
-        return fecha.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+        return fecha.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+    }
+
+    function formatearHora(horaStr) {
+        return horaStr?.slice(0, 5)
     }
 
     return (
@@ -58,84 +64,48 @@ export default function Eventos() {
                 <p className='nunito-font eventos-desc'>
                     Enterate de nuestras próximas juntadas, charlas y actividades.
                 </p>
-
-                {/*(backend): este formulario hoy es visible para cualquiera.
-                   Cuando haya login de admin, mostrar este bloque solo si esAdmin === true. */}
-                <form className='nunito-font evento-form' onSubmit={handleSubmit}>
-                    <p className='nunito-btn-font evento-form-label'>Publicar nuevo evento</p>
-                    <input
-                        className='nunito-font evento-input'
-                        type="text"
-                        name="titulo"
-                        placeholder="Título del evento"
-                        value={form.titulo}
-                        onChange={handleChange}
-                        required
-                    />
-                    <div className='evento-input-row'>
-                        <input
-                            className='nunito-font evento-input'
-                            type="date"
-                            name="fecha"
-                            value={form.fecha}
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
-                            className='nunito-font evento-input'
-                            type="time"
-                            name="hora"
-                            value={form.hora}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <input
-                        className='nunito-font evento-input'
-                        type="text"
-                        name="ubicacion"
-                        placeholder="Ubicación"
-                        value={form.ubicacion}
-                        onChange={handleChange}
-                        required
-                    />
-                    <textarea
-                        className='nunito-font evento-textarea'
-                        name="descripcion"
-                        placeholder="Descripción (opcional)"
-                        rows={2}
-                        value={form.descripcion}
-                        onChange={handleChange}
-                    />
-                    <button className='nunito-btn-font evento-btn' type="submit" disabled={enviando}>
-                        {enviando ? 'Publicando...' : 'Publicar evento'}
-                    </button>
-                </form>
             </section>
 
             <section className='pizarron-container'>
                 <h2 className='nunito-font seccion-title'>Próximas actividades</h2>
 
-                {eventos.length === 0 ? (
-                    <p className='nunito-font sin-eventos'>Todavía no hay eventos cargados.</p>
-                ) : (
+                {error && (
+                    <div className='eventos-error' role="alert">
+                        <svg className='eventos-error-icon' viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
+                            <path d="M12 7.5V13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                            <circle cx="12" cy="16.2" r="1" fill="currentColor" />
+                        </svg>
+                        <span>{error}</span>
+                    </div>
+                )}
+
+                {cargando && (
+                    <p className='nunito-font sin-eventos'>Cargando eventos...</p>
+                )}
+
+                {!cargando && !error && eventos.length === 0 && (
+                    <p className='nunito-font sin-eventos'>
+                        Por ahora no hay eventos programados. ¡Volvé a visitarnos pronto!
+                    </p>
+                )}
+
+                {!cargando && eventos.length > 0 && (
                     <div className='pizarron'>
-                        {eventos.map((ev) => (
-                            <article className='nunito-font evento-card' key={ev.id}>
+                        {eventos.map((ev, index) => (
+                            <article
+                                className={`nunito-font evento-card ${index === 0 ? 'evento-card-destacado' : ''}`}
+                                key={ev.id}
+                            >
                                 <div className='evento-card-header'>
                                     <span className='evento-fecha'>{formatearFecha(ev.fecha)}</span>
-                                    {/*(backend): botón de borrar, restringir a admin cuando exista login. */}
-                                    <button
-                                        className='evento-borrar'
-                                        onClick={() => handleDelete(ev.id)}
-                                        aria-label={`Borrar evento ${ev.titulo}`}
-                                    >
-                                        ✕
-                                    </button>
+                                    {index === 0 && (
+                                        <span className='evento-badge-proximo'>Próximo evento</span>
+                                    )}
                                 </div>
                                 <h3 className='nunito-font evento-titulo'>{ev.titulo}</h3>
                                 <div className='nunito-font evento-info'>
-                                    <span className='evento-info-item'>🕒 {ev.hora} hs</span>
+                                    <span className='evento-info-item'>🕒 {formatearHora(ev.hora)} hs</span>
                                     <span className='evento-info-item'>📍 {ev.ubicacion}</span>
                                 </div>
                                 {ev.descripcion && (
@@ -144,6 +114,16 @@ export default function Eventos() {
                             </article>
                         ))}
                     </div>
+                )}
+
+                {siguienteUrl && (
+                    <button
+                        className='nunito-btn-font cargar-mas-btn'
+                        onClick={cargarMasEventos}
+                        disabled={cargandoMas}
+                    >
+                        {cargandoMas ? 'Cargando...' : 'Cargar más eventos'}
+                    </button>
                 )}
             </section>
         </main>

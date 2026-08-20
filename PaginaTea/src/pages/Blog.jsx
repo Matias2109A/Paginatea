@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Blog.css'
-//(backend): este array es de ejemplo. Reemplazar por las preguntas que devuelva la API.
-const preguntasIniciales = []
 
-// Estas preguntas frecuentes son fijas
-// (backend): si más adelante quieren editarlas desde un panel admin, este array
-// también podría venir de la API.
+// URL de la API de Django. En producción, cambiar por la URL real del backend.
+const API_URL = 'http://127.0.0.1:8000/api/preguntas/'
+
+
 const faqs = [
     {
         pregunta: "¿Qué es el TEA?",
@@ -22,11 +21,52 @@ const faqs = [
 ]
 
 export default function Blog() {
-    const [preguntas, setPreguntas] = useState(preguntasIniciales)
+    const [preguntas, setPreguntas] = useState([])
+    const [cargando, setCargando] = useState(true)
+    const [cargandoMas, setCargandoMas] = useState(false)
+    const [siguienteUrl, setSiguienteUrl] = useState(null)
+    const [errorCarga, setErrorCarga] = useState(null)
+    const [errorEnvio, setErrorEnvio] = useState(null)
     const [form, setForm] = useState({ nombre: '', pregunta: '' })
     const [enviando, setEnviando] = useState(false)
     const [openFaq, setOpenFaq] = useState(null)
-    //(backend): traer las preguntas reales al cargar la página.
+
+    // Trae las preguntas de la API al cargar la página.
+    useEffect(() => {
+        cargarPreguntas()
+    }, [])
+
+    async function cargarPreguntas() {
+        try {
+            setCargando(true)
+            const res = await fetch(API_URL)
+            if (!res.ok) throw new Error('No se pudieron cargar las preguntas')
+            const data = await res.json()
+            setPreguntas(data.results)
+            setSiguienteUrl(data.next)
+            setErrorCarga(null)
+        } catch (err) {
+            setErrorCarga('No pudimos cargar las preguntas. Intentá de nuevo más tarde.')
+        } finally {
+            setCargando(false)
+        }
+    }
+
+    async function cargarMasPreguntas() {
+        if (!siguienteUrl) return
+        try {
+            setCargandoMas(true)
+            const res = await fetch(siguienteUrl)
+            if (!res.ok) throw new Error('No se pudieron cargar más preguntas')
+            const data = await res.json()
+            setPreguntas((prev) => [...prev, ...data.results])
+            setSiguienteUrl(data.next)
+        } catch (err) {
+            setErrorCarga('No pudimos cargar más preguntas. Intentá de nuevo más tarde.')
+        } finally {
+            setCargandoMas(false)
+        }
+    }
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -37,26 +77,36 @@ export default function Blog() {
         if (!form.nombre.trim() || !form.pregunta.trim()) return
 
         setEnviando(true)
-        //(backend): reemplazar este bloque por el POST real
-        const nuevaPregunta = {
-            id: Date.now(),
-            nombre: form.nombre,
-            pregunta: form.pregunta,
-            respuesta: null,
+        setErrorEnvio(null)
+        try {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    autor_nombre: form.nombre,
+                    contenido: form.pregunta,
+                }),
+            })
+            const data = await res.json()
+            if (!res.ok) {
+                if (res.status === 429) {
+                    throw new Error('Enviaste varias preguntas seguidas. Esperá un poco antes de volver a intentar.')
+                }
+                // Django devuelve { autor_nombre: ["mensaje"], contenido: ["mensaje"] }
+                const primerError = Object.values(data)[0]?.[0]
+                throw new Error(primerError || 'No pudimos enviar tu pregunta. Intentá de nuevo.')
+            }
+            setPreguntas([data, ...preguntas])
+            setForm({ nombre: '', pregunta: '' })
+        } catch (err) {
+            setErrorEnvio(err.message)
+        } finally {
+            setEnviando(false)
         }
-        setPreguntas([nuevaPregunta, ...preguntas])
-
-        setForm({ nombre: '', pregunta: '' })
-        setEnviando(false)
     }
 
     function toggleFaq(index) {
         setOpenFaq(openFaq === index ? null : index)
-    }
-
-    function handleDelete(id) {
-        //(backend): reemplazar por el DELETE real
-        setPreguntas(preguntas.filter((p) => p.id !== id))
     }
 
     return (
@@ -67,6 +117,20 @@ export default function Blog() {
                 <p className='lora-font blog-desc'>
                     ¿Tenés una duda sobre neurodivergencia o autismo? Dejanos tu pregunta y te respondemos por acá.
                 </p>
+
+                {errorEnvio && (
+                    <div className='form-error' role="alert">
+                        <svg className='form-error-icon' viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
+                            <path d="M12 7.5V13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                            <circle cx="12" cy="16.2" r="1" fill="currentColor" />
+                        </svg>
+                        <div className='form-error-texto'>
+                            <p className='nunito-btn-font form-error-titulo'>No pudimos enviar tu pregunta</p>
+                            <p className='lora-font form-error-mensaje'>{errorEnvio}</p>
+                        </div>
+                    </div>
+                )}
 
                 <form className='nunito-font pregunta-form' onSubmit={handleSubmit}>
                     <input
@@ -95,25 +159,18 @@ export default function Blog() {
 
             <section className='preguntas-lista-container'>
                 <h2 className='nunito-font seccion-title'>Preguntas de la comunidad</h2>
+                {errorCarga && <p className='lora-font sin-preguntas'>{errorCarga}</p>}
                 <div className='preguntas-lista'>
-                    {preguntas.length === 0 && (
+                    {cargando && (
+                        <p className='lora-font sin-preguntas'>Cargando preguntas...</p>
+                    )}
+                    {!cargando && preguntas.length === 0 && (
                         <p className='lora-font sin-preguntas'>Todavía no hay preguntas. ¡Sé el primero en escribir!</p>
                     )}
                     {preguntas.map((p) => (
                         <article className='pregunta-card' key={p.id}>
-                            <div className='pregunta-card-header'>
-                                <p className='nunito-font pregunta-card-nombre'>{p.nombre}</p>
-                                 {/*(backend): este botón de borrar hoy es visible para cualquiera.
-                                   Si más adelante hay login de admin, mostrar solo si esAdmin === true. */}
-                                <button
-                                    className='pregunta-borrar'
-                                    onClick={() => handleDelete(p.id)}
-                                    aria-label={`Borrar pregunta de ${p.nombre}`}
-                                >
-                                    ✕
-                                </button>
-                            </div>       
-                            <p className='lora-font pregunta-card-texto'>{p.pregunta}</p>
+                            <p className='nunito-font pregunta-card-nombre'>{p.autor_nombre}</p>
+                            <p className='lora-font pregunta-card-texto'>{p.contenido}</p>
                             {p.respuesta ? (
                                 <div className='pregunta-card-respuesta'>
                                     <p className='nunito-btn-font respuesta-label'>Respuesta de Tea-MO</p>
@@ -121,11 +178,19 @@ export default function Blog() {
                                 </div>
                             ) : (
                                 <p className='nunito-btn-font pregunta-pendiente'>Pendiente de respuesta</p>
-                                //(backend): futuro un botón "Responder" visible
                             )}
                         </article>
                     ))}
                 </div>
+                {siguienteUrl && (
+                    <button
+                        className='nunito-btn-font cargar-mas-btn'
+                        onClick={cargarMasPreguntas}
+                        disabled={cargandoMas}
+                    >
+                        {cargandoMas ? 'Cargando...' : 'Cargar más preguntas'}
+                    </button>
+                )}
             </section>
 
             <section className='faq-container'>

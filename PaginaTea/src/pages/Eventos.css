@@ -27,64 +27,27 @@
     margin-top: 0.5rem;
 }
 
-.evento-form {
+.eventos-error {
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
     gap: 0.75rem;
-    width: 100%;
     max-width: 480px;
-    margin-top: 2rem;
-    background-color: var(--superf);
-    border: 1px solid var(--bordes);
-    border-radius: 1rem;
-    padding: 1.5rem;
+    margin: 0 auto 1.5rem auto;
+    padding: 1rem 1.15rem;
+    background-color: #FDF1F1;
+    border: 1px solid #E7B2B2;
+    border-left: 4px solid #C5484F;
+    border-radius: 0.6rem;
+    color: #A33A3A;
+    font-size: 14px;
+    line-height: 20px;
     text-align: left;
 }
 
-.evento-form-label {
-    color: var(--acents);
-    font-size: 14px;
-    margin-bottom: 0.25rem;
-}
-
-.evento-input-row {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.evento-input,
-.evento-textarea {
-    font-family: inherit;
-    font-size: 15px;
-    color: var(--acents);
-    background-color: var(--bg-princ);
-    border: 1px solid var(--bordes);
-    border-radius: 0.75rem;
-    padding: 0.75rem 1rem;
-    width: 100%;
-    resize: vertical;
-}
-
-.evento-input:focus,
-.evento-textarea:focus {
-    outline: none;
-    border-color: var(--color-princ);
-}
-
-.evento-btn {
-    background-color: var(--color-princ);
-    color: var(--bg-princ);
-    border: none;
-    border-radius: 20rem;
-    padding: 0.85rem 1.5rem;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 0.25rem;
-}
-
-.evento-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.eventos-error-icon {
+    flex-shrink: 0;
+    color: #C5484F;
+    margin-top: 0.1rem;
 }
 
 .seccion-title {
@@ -122,11 +85,17 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
 }
 
+.evento-card-destacado {
+    border: 1.5px solid var(--color-princ);
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
+}
+
 .evento-card-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .evento-fecha {
@@ -140,20 +109,17 @@
     text-transform: capitalize;
 }
 
-.evento-borrar {
-    background: none;
-    border: none;
+.evento-badge-proximo {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
     color: var(--color-princ);
-    font-size: 14px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0.25rem;
-    border-radius: 0.4rem;
-}
-
-.evento-borrar:hover {
-    background-color: var(--bordes);
-    color: var(--acents);
+    background-color: var(--bg-princ);
+    border: 1px solid var(--color-princ);
+    border-radius: 20rem;
+    padding: 0.25rem 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .evento-titulo {
