@@ -8,7 +8,12 @@ export default function Inicio() {
                 <div className='hero'>
                     <img className='infinite-img' src={infiniteImg} />
                     <p className='nunito-btn-font hero-ubi'>Carcarañá · Santa Fe · Argentina</p>
-                    <h1 className='nunito-font title'>COMUNIDAD PARA LA <span className='nunito-font title-span'>NEURODIVERGENCIA</span></h1>
+                    
+                    <h1 className='nunito-font title'>
+                        COMUNIDAD PARA LA 
+                        <span className='nunito-font title-span'>NEURODIVERGENCIA</span>
+                    </h1>
+
                     <p className='lora-font hero-desc'>Acompañamos, informamos e incluimos. Una red de familias que camina junta hacia una sociedad más empática y  diversa.</p>
 
                     <div className='hero-btns'>
