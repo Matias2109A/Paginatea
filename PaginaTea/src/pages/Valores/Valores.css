@@ -1,0 +1,67 @@
+.valores-conteiner {
+    padding: 5rem 1rem 5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-princ);
+}
+
+.title-valores {
+    font-size: 3rem;
+    margin-bottom: 3.5rem;
+    color: var(--acents);
+}
+
+.cards-conteiner {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.card-valores {
+    border: 1px solid var(--bordes);
+    border-radius: 1rem;
+    padding: 2rem;
+    background-color: var(--superf);
+    width: 20rem;
+}
+
+.card-mid-valores {
+    background-color: var(--color-princ);
+    color: #fff;
+}
+
+.title-card-valores {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.desc-card-valores {
+    font-size: 0.875rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+}
+
+.card-letter {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-radius: calc(infinity * 1px);
+    width: 4rem;
+    height: 4rem;
+}
+
+.letter1 {
+    background-color: rgb(91, 155, 213);
+}
+
+.letter2 {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.letter3 {
+    background-color: rgb(232, 168, 56);
+}

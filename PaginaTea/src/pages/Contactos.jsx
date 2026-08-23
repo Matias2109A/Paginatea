@@ -29,7 +29,7 @@ export default function Contactos() {
                         
                     <a  className='contact-card contact-card--featured'
                         href="https://www.instagram.com/padres.autismo.carcarana/"
-                        arget="_blank"
+                        target="_blank"
                         rel="noopener noreferrer">
                         
                         <span className='contact-icon contact-icon--instagram'>
