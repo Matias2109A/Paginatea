@@ -249,3 +249,9 @@
     background-color: var(--bordes);
     color: var(--acents);
 }
+
+@media (max-width: 480px) {
+    .seccion-title {
+        font-size: 20px;
+    }
+}

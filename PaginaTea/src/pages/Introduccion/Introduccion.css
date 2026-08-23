@@ -4,10 +4,12 @@
 }
 
 .introduccion {
-    margin: 0rem 30.5rem 0rem 30.5rem;
+    margin: 0 auto;
+    max-width: 50rem;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
+    padding: 0 1rem;
 }
 
 .title-introduccion {
@@ -22,6 +24,18 @@
     color: var(--txt-contraste);
     font-size: 1.125rem;
     line-height: 1.875rem;
-    margin: 0rem 4rem 1rem 4rem;
+    margin: 0 0 1rem 0;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .title-introduccion {
+        font-size: 2rem;
+        line-height: 2.25rem;
+    }
+
+    .texto1, .texto2 {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
 }

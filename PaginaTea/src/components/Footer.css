@@ -54,3 +54,13 @@
 .footer__nav-link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+    .footer__nav {
+        gap: 1rem;
+    }
+
+    .footer__title {
+        font-size: 0.9rem;
+    }
+}
