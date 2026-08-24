@@ -10,8 +10,10 @@ export default function Inicio() {
                     <p className='nunito-btn-font hero-ubi'>Carcarañá · Santa Fe · Argentina</p>
                     
                     <h1 className='nunito-font title'>
-                        COMUNIDAD PARA LA 
-                        <span className='nunito-font title-span'>NEURODIVERGENCIA</span>
+                        <h1 className='nunito-font title'>
+                            <span className='title-linea1'>COMUNIDAD PARA LA</span>
+                            <span className='nunito-font title-span'>NEURODIVERGENCIA</span>
+                        </h1>
                     </h1>
 
                     <p className='lora-font hero-desc'>Acompañamos, informamos e incluimos. Una red de familias que camina junta hacia una sociedad más empática y  diversa.</p>

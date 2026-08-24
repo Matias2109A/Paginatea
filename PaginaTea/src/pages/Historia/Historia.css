@@ -15,6 +15,7 @@
     position: relative;
     flex: 1;
     height: 100%;
+    margin-bottom: 2rem;
 }
 
 .historia-right {
@@ -23,18 +24,20 @@
     flex-direction: column;
 }
 
-
 .img-historia {
-    width: 100%;
+     width: 100%;
     height: 22.8rem;
     object-fit: cover;
     border-radius: 1rem;
+    margin: 0;
+    display: block;
 }
 
 .cuadro-text-historia {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+     position: absolute;
+    top: 100%;
+    left: 0.4rem;
+    transform: translateY(-50%);
     color: var(--bg-princ);
     padding: 1rem;
     border-radius: 1rem;
@@ -70,7 +73,7 @@
     margin-top: 1rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .historia {
         flex-direction: column;
     }

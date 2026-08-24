@@ -65,8 +65,6 @@ const contenidoOferta = {
 export default function Oferta() {
     const [tabActiva, setTabActiva] = useState('acompañamiento')
     return(
-
-
         <section className='oferta-conteiner'>
             <h2 className='nunito-font title-oferta'>Lo que ofrecemos</h2>
             <p className='nunito-btn-font desc-oferta'>Tres pilares que sostienen nuestro trabajo comunitario</p>
@@ -79,7 +77,7 @@ export default function Oferta() {
 
             <div className={`cards-conteiner-oferta ${tabActiva === 'actividades' ? 'grid-2-cols' : 'grid-3-cols'}`}>
               {contenidoOferta[tabActiva].map((item, index) => (
-                <div key={index} className={`card-oferta ${tabActiva === 'actividades' ? 'card-horizontal' : ''}`}>
+                <div key={index} className='card-oferta card-horizontal'>
                    <span className='card-oferta-icono'>{item.icono}</span>
                    <h4 className='nunito-font card-oferta-titulo'>{item.titulo}</h4>
                    <p className='lora-font card-oferta-desc'>{item.texto}</p>

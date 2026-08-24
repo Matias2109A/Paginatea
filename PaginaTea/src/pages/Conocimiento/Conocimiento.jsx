@@ -1,5 +1,5 @@
 import './Conocimiento.css'
-import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts'
+import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer} from 'recharts'
 
 
 const data = [
@@ -37,14 +37,16 @@ export default function Conocimiento() {
                     <p className='lora-font desc-conocimiento'>Esto evidencia la necesidad de continuar promoviendo acciones de información, capacitación y concientización en la comunidad.</p>   
                 </div>
 
-                <div className='conocimiento-der'>
-                    <PieChart width={400} height={400}>
-                      <Pie data={data} cx="50%" cy="50%" innerRadius={80} outerRadius={120} fill="#8884d8" paddingAngle={5} dataKey="value" stroke="none">
-                        {data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
-                      </Pie>
-                      <Legend layout="horizontal" verticalAlign="bottom" align="center" wrapperStyle={{color: 'var(--txt-contraste)', fontSize: '1rem', fontFamily: 'Nunito, sans-serif'}} formatter={(value, entry) => entry.payload.legendText}/>
-                      <Tooltip content={<CustomTooltip/>}/>
-                    </PieChart>
+                 <div className='conocimiento-der'>
+                    <ResponsiveContainer width="100%" height={400}>
+                        <PieChart>
+                          <Pie data={data} cx="50%" cy="50%" innerRadius={80} outerRadius={120} fill="#8884d8" paddingAngle={5} dataKey="value" stroke="none">
+                            {data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
+                          </Pie>
+                          <Legend layout="horizontal" verticalAlign="bottom" align="center" wrapperStyle={{color: 'var(--txt-contraste)', fontSize: '1rem', fontFamily: 'Nunito, sans-serif'}} formatter={(value, entry) => entry.payload.legendText}/>
+                          <Tooltip content={<CustomTooltip/>}/>
+                        </PieChart>
+                    </ResponsiveContainer>
                 </div>
             </div>
         </section>

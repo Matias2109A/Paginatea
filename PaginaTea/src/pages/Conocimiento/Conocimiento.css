@@ -29,3 +29,32 @@
     color: var(--txt-contraste);
     line-height: 1.625rem;
 }
+
+@media (max-width: 1100px) {
+    .conocimiento-conteiner-full {
+        width: 85%;
+    }
+}
+
+@media (max-width: 768px) {
+    .conocimiento-conteiner-full {
+        flex-direction: column;
+        width: 100%;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .title-conocimiento {
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .conocimiento-conteiner {
+        padding: 3rem 1rem;
+    }
+
+    .title-conocimiento {
+        font-size: 1.75rem;
+    }
+}

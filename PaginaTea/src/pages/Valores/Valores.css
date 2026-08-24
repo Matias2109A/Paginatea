@@ -71,3 +71,30 @@
 .letter3 {
     background-color: rgb(232, 168, 56);
 }
+
+@media (max-width: 768px) {
+    .cards-conteiner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-valores {
+        width: 100%;
+        max-width: 22rem;
+    }
+
+    .title-valores {
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .valores-conteiner {
+        padding: 3rem 1rem;
+    }
+
+    .title-valores {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+}

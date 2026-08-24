@@ -28,6 +28,7 @@
 .parrafo-impacto {
     margin-top: .5rem;
     color: var(--texto);
+    line-height: 1.6rem;
 }
 
 .img-impacto {
@@ -35,4 +36,40 @@
     border-radius: 1.5rem;
     height: 100%;
     width: 100%;
+    margin: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .impacto-grid-conteiner {
+        grid-template-columns: 1fr;
+        width: 90%;
+        gap: 2.5rem;
+    }
+
+    .title-impacto {
+        font-size: 2.25rem;
+    }
+
+    .parrafo-impacto {
+        margin-top: 1rem;
+    }
+
+    .parrafo-impacto + .parrafo-impacto {
+        margin-top: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .impacto-conteiner {
+        padding: 3rem 1rem;
+    }
+
+    .impacto-grid-conteiner {
+        width: 100%;
+    }
+
+    .title-impacto {
+        font-size: 1.75rem;
+    }
 }

@@ -92,3 +92,25 @@
 .card-nes-full-desc{
     color: rgba(255, 255, 255, 0.8);
 }
+
+@media (max-width: 1100px) {
+    .cards-nes-conteiner,
+    .card-nes-full {
+        width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    .nes-conteiner {
+        padding: 3rem 1rem;
+    }
+
+    .cards-nes-conteiner,
+    .card-nes-full {
+        width: 100%;
+    }
+
+    .title-nes {
+        font-size: 2rem;
+    }
+}
