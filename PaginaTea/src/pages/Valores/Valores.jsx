@@ -12,8 +12,8 @@ export default function Valores() {
                 </div>
                 <div className='card-valores card-mid-valores'>
                     <span className='nunito-font card-letter letter2'>V</span>
-                    <h3 className='nunito-font title-card-valores'>Valores</h3>
-                    <p className='lora-font desc-card-valores'>Nos guiamos por la inclusión, el respeto, la empatía, la diversidad y la solidaridad. Creemos en la importancia de aceptar y valorar las diferencias, promoviendo una sociedad más informada y libre de prejuicios.</p>
+                    <h3 className='nunito-font title-card-valores mid-card'>Valores</h3>
+                    <p className='lora-font desc-card-valores mid-card'>Nos guiamos por la inclusión, el respeto, la empatía, la diversidad y la solidaridad. Creemos en la importancia de aceptar y valorar las diferencias, promoviendo una sociedad más informada y libre de prejuicios.</p>
                 </div>
                 <div className='card-valores'>
                     <span className='nunito-font card-letter letter3'>V</span>

@@ -4,6 +4,21 @@
   text-align: center;
   border-top: 1px solid var(--bordes);
   background-color: var(--superf);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  gap: 1rem;
+  max-width: 31rem;
 }
 
 .footer__logo {
@@ -53,6 +68,20 @@
 
 .footer__nav-link:hover {
   text-decoration: underline;
+}
+
+.footer__mapa {
+  display: flex;
+  justify-content: center;
+  min-width: 19rem;
+}
+
+.mapa-iframe {
+  width: 100%;
+  max-width: 28rem;
+  height: 20rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 480px) {

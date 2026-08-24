@@ -1,0 +1,94 @@
+.nes-conteiner {
+    padding: 5rem 1rem 5rem 1rem;
+    background-color: var(--bg-princ);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-nes {
+    font-size: 3rem;
+    color: var(--acents);
+    margin-bottom: 1rem;
+}
+
+.desc-nes {
+    color: var(--acents);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+.cards-nes-conteiner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+    margin: 0 auto;
+    gap: 1rem;
+    width: 55%;
+}
+
+.card-nes {
+    background-color: var(--superf);
+    border: 1px solid var(--bordes);
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    height: 100%;
+}
+
+.number-card-nes {
+    color: #fff;
+    font-size: 0.875rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: calc(infinity * 1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.number1{
+    background-color: rgb(91, 155, 213)
+}
+
+.number2{
+    background-color: rgb(163, 140, 116);
+}
+
+.number3{
+    background-color: rgb(232, 168, 56);
+}
+
+.card-title-nes {
+    color: var(--acents);
+    margin-bottom: .75rem;
+    font-size: 1.125rem;
+}
+
+.card-desc-nes {
+    color: var(--texto);
+    line-height: 1.625rem;
+    font-size: 0.875rem;
+}
+
+.card-nes-full{
+    padding: 2rem;
+    background-color: var(--color-princ);
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.card-nes-full-title{
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: .75rem;
+}
+
+.card-nes-full-desc{
+    color: rgba(255, 255, 255, 0.8);
+}

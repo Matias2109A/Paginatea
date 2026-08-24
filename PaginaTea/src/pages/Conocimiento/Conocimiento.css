@@ -1,0 +1,31 @@
+.conocimiento-conteiner {
+    padding: 5rem 1rem 5rem 1rem;
+    background-color: var(--acents);
+}
+
+.conocimiento-conteiner-full {
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+.title-conocimiento {
+    font-size: 3rem;
+    color: #fff;
+    margin-top: .5rem;
+}
+
+.pretitle-conocimiento {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--color-princ);
+}
+
+.desc-conocimiento {
+    margin-top: 1.5rem;
+    color: var(--txt-contraste);
+    line-height: 1.625rem;
+}

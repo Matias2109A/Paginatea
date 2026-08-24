@@ -34,19 +34,25 @@
 .title-card-valores {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
+    color: var(--acents);
 }
 
 .desc-card-valores {
     font-size: 0.875rem;
     line-height: 1.4rem;
     font-weight: 400;
+    color: var(--acents)
+}
+
+.mid-card {
+    color: #fff;
 }
 
 .card-letter {
     padding: 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     font-size: 1rem;
     margin-bottom: 1rem;
     border-radius: calc(infinity * 1px);

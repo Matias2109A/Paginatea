@@ -1,0 +1,38 @@
+.impacto-conteiner {
+    padding: 5rem 1rem 5rem 1rem;
+    background-color: var(--superf);
+    border: 1px solid rgb(216, 207, 196);
+}
+
+.impacto-grid-conteiner {
+    display: grid;
+    margin: 0 auto;
+    gap: 3rem;
+    width: 55%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));;
+}
+
+.pretitle-impacto {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--color-princ);
+}
+
+.title-impacto {
+    font-size: 3rem;
+    color: var(--acents);
+    margin-bottom: 1.5rem;
+}
+
+.parrafo-impacto {
+    margin-top: .5rem;
+    color: var(--texto);
+}
+
+.img-impacto {
+    aspect-ratio: 4 / 3;
+    border-radius: 1.5rem;
+    height: 100%;
+    width: 100%;
+}
