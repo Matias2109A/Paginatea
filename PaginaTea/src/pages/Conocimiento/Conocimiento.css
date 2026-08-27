@@ -4,9 +4,11 @@
 }
 
 .conocimiento-conteiner-full {
-    width: 55%;
+    max-width: 64rem;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    overflow: hidden;
     margin: 0 auto;
     gap: 3rem;
 }
@@ -28,6 +30,34 @@
     margin-top: 1.5rem;
     color: var(--txt-contraste);
     line-height: 1.625rem;
+}
+
+.conocimiento-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+.conocimiento-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.conocimiento-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1100px) {

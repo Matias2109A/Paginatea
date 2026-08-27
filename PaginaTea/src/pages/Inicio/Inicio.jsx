@@ -19,8 +19,8 @@ export default function Inicio() {
                     <p className='lora-font hero-desc'>Acompañamos, informamos e incluimos. Una red de familias que camina junta hacia una sociedad más empática y  diversa.</p>
 
                     <div className='hero-btns'>
-                        <a className='nunito-btn-font hero-btn conocemas' href="#">Conocé más</a>
-                        <a className='nunito-btn-font hero-btn guia' href="#">Guía para familias</a>
+                        <a className='nunito-btn-font hero-btn conocemas' href='#neurodivergencia'>Conocé más</a>
+                        <a className='nunito-btn-font hero-btn guia' href="#nes">Guía para familias</a>
                     </div>
 
                     <div className='hero-cards'>

@@ -1,6 +1,11 @@
 .oferta-conteiner {
     padding: 5rem 1rem 5rem 1rem;
     background-color: var(--bg-princ);
+}
+
+.oferta {
+    max-width: 64rem;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,7 +57,6 @@
 .cards-conteiner-oferta {
     display: grid;
     margin: 0 auto;
-    width: 55%;
     gap: 1.25rem;
 }
 

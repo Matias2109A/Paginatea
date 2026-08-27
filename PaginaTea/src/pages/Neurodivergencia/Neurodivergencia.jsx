@@ -4,7 +4,7 @@ import NeurodivImg2 from '../../assets/imgs-inicio/img-figma3.jpg'
 
 export default function Neurodivergencia() {
     return (
-        <section className='conteiner-neurodivergencia'>
+        <section id='neurodivergencia' className='conteiner-neurodivergencia'>
             <div className='neurodivergencia'>
                 <div className='neurodivergencia-left'>
                     <h2 className='nunito-font title-neurodiv'>Neurodivergencia</h2>

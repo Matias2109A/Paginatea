@@ -119,7 +119,6 @@
     flex-direction: column;
     align-items: left;
     gap: 1rem;
-    justify-content: center;
     border: 1px solid var(--bordes);
     padding: 1rem;
     background-color: var(--superf);

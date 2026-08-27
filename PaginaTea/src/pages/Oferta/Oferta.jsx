@@ -66,25 +66,28 @@ export default function Oferta() {
     const [tabActiva, setTabActiva] = useState('acompañamiento')
     return(
         <section className='oferta-conteiner'>
-            <h2 className='nunito-font title-oferta'>Lo que ofrecemos</h2>
-            <p className='nunito-btn-font desc-oferta'>Tres pilares que sostienen nuestro trabajo comunitario</p>
+            <div className="oferta">
 
-            <div className='btns-oferta'>
-                <button className={`nunito-btn-font btn-oferta ${tabActiva === 'acompañamiento' ? 'btn-oferta-active' : ''}`}onClick={() => setTabActiva('acompañamiento')}>Acompañamiento</button>
-                <button className={`nunito-btn-font btn-oferta ${tabActiva === 'actividades' ? 'btn-oferta-active' : ''}`}onClick={() => setTabActiva('actividades')}>Actividades</button>
-                <button className={`nunito-btn-font btn-oferta ${tabActiva === 'recursos' ? 'btn-oferta-active' : ''}`}onClick={() => setTabActiva('recursos')}>Recursos</button>
-            </div>
+                <h2 className='nunito-font title-oferta'>Lo que ofrecemos</h2>
+                <p className='nunito-btn-font desc-oferta'>Tres pilares que sostienen nuestro trabajo comunitario</p>
 
-            <div className={`cards-conteiner-oferta ${tabActiva === 'actividades' ? 'grid-2-cols' : 'grid-3-cols'}`}>
-              {contenidoOferta[tabActiva].map((item, index) => (
-                <div key={index} className='card-oferta card-horizontal'>
-                   <span className='card-oferta-icono'>{item.icono}</span>
-                   <h4 className='nunito-font card-oferta-titulo'>{item.titulo}</h4>
-                   <p className='lora-font card-oferta-desc'>{item.texto}</p>
+                <div className='btns-oferta'>
+                    <button className={`nunito-btn-font btn-oferta ${tabActiva === 'acompañamiento' ? 'btn-oferta-active' : ''}`}onClick={() => setTabActiva('acompañamiento')}>Acompañamiento</button>
+                    <button className={`nunito-btn-font btn-oferta ${tabActiva === 'actividades' ? 'btn-oferta-active' : ''}`}onClick={() => setTabActiva('actividades')}>Actividades</button>
+                    <button className={`nunito-btn-font btn-oferta ${tabActiva === 'recursos' ? 'btn-oferta-active' : ''}`}onClick={() => setTabActiva('recursos')}>Recursos</button>
                 </div>
-              ))}
-            </div>
 
+                <div className={`cards-conteiner-oferta ${tabActiva === 'actividades' ? 'grid-2-cols' : 'grid-3-cols'}`}>
+                  {contenidoOferta[tabActiva].map((item, index) => (
+                      <div key={index} className='card-oferta card-horizontal'>
+                       <span className='card-oferta-icono'>{item.icono}</span>
+                       <h4 className='nunito-font card-oferta-titulo'>{item.titulo}</h4>
+                       <p className='lora-font card-oferta-desc'>{item.texto}</p>
+                    </div>
+                  ))}
+                </div>
+
+            </div>
         </section>
     )
 }

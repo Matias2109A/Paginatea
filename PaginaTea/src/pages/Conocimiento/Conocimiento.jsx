@@ -25,6 +25,17 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+const CustomLegend = ({ data }) => (
+  <ul className="conocimiento-legend">
+    {data.map((item, i) => (
+      <li key={i} className="conocimiento-legend-item">
+        <span className="conocimiento-legend-dot" style={{ backgroundColor: item.fill }} />
+        <span>{item.name} ({item.percentage})</span>
+      </li>
+    ))}
+  </ul>
+);
+
 export default function Conocimiento() {
     return(
         <section className='conocimiento-conteiner'>
@@ -37,17 +48,19 @@ export default function Conocimiento() {
                     <p className='lora-font desc-conocimiento'>Esto evidencia la necesidad de continuar promoviendo acciones de información, capacitación y concientización en la comunidad.</p>   
                 </div>
 
-                 <div className='conocimiento-der'>
-                    <ResponsiveContainer width="100%" height={400}>
-                        <PieChart>
-                          <Pie data={data} cx="50%" cy="50%" innerRadius={80} outerRadius={120} fill="#8884d8" paddingAngle={5} dataKey="value" stroke="none">
-                            {data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
-                          </Pie>
-                          <Legend layout="horizontal" verticalAlign="bottom" align="center" wrapperStyle={{color: 'var(--txt-contraste)', fontSize: '1rem', fontFamily: 'Nunito, sans-serif'}} formatter={(value, entry) => entry.payload.legendText}/>
-                          <Tooltip content={<CustomTooltip/>}/>
-                        </PieChart>
-                    </ResponsiveContainer>
-                </div>
+        <div className='conocimiento-der'>
+          <ResponsiveContainer width="100%" height={320} minWidth={250}>
+            <PieChart>
+              <Pie data={data} cx="50%" cy="50%" innerRadius={80} outerRadius={120}
+                fill="#8884d8" paddingAngle={5} dataKey="value" stroke="none">
+                {data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+
+          <CustomLegend data={data} />
+        </div>
             </div>
         </section>
     )

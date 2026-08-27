@@ -1,5 +1,14 @@
 import './Contactos.css'
 
+const abrirCorreo = (e) => {
+    e.preventDefault();
+    window.open(
+        "https://mail.google.com/mail/?view=cm&fs=1&to=padresautismocarc@gmail.com",
+        "compose",
+        "width=600,height=500"
+    );
+};
+
 export default function Contactos() {
     return (
         <main>
@@ -13,7 +22,8 @@ export default function Contactos() {
                     
                         
                     <a className='contact-card'
-                        href="https://mail.google.com/mail/?view=cm&fs=1&to=padresautismocarc@gmail.com">
+                        onClick={abrirCorreo}
+                        >
                     
                         <span className='contact-icon contact-icon--email'>
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

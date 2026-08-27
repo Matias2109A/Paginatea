@@ -1,6 +1,11 @@
 .nes-conteiner {
     padding: 5rem 1rem 5rem 1rem;
     background-color: var(--bg-princ);
+}
+
+.nes {
+    max-width: 64rem;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +29,6 @@
     grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
     margin: 0 auto;
     gap: 1rem;
-    width: 55%;
 }
 
 .card-nes {
@@ -45,18 +49,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
-}
-
-.number1{
-    background-color: rgb(91, 155, 213)
-}
-
-.number2{
     background-color: rgb(163, 140, 116);
-}
-
-.number3{
-    background-color: rgb(232, 168, 56);
 }
 
 .card-title-nes {
@@ -74,7 +67,6 @@
 .card-nes-full{
     padding: 2rem;
     background-color: var(--color-princ);
-    width: 55%;
     display: flex;
     align-items: center;
     justify-content: center;
