@@ -94,6 +94,16 @@
     color: var(--acents);
 }
 
+.contact-card > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.contact-value {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .contactos-cta {
     width: 100%;
     max-width: 800px;
