@@ -8,6 +8,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Pregunta
 
+from django.utils.html import format_html
+from django.urls import reverse
+
 logger = logging.getLogger('tea_mo')
 
 class SoloAccesoTotalMixin:
@@ -66,7 +69,7 @@ class EstadoRespuestaFilter(admin.SimpleListFilter):
 
 @admin.register(Pregunta)
 class PreguntaAdmin(admin.ModelAdmin):
-    list_display = ('autor_nombre', 'contenido_resumido', 'fecha_creacion', 'estado')
+    list_display = ('autor_nombre', 'contenido_resumido', 'fecha_creacion', 'estado', 'accion_boton')
     list_filter = (EstadoRespuestaFilter,)
     search_fields = ('autor_nombre', 'contenido')
     ordering = ('-fecha_creacion',)
@@ -95,6 +98,13 @@ class PreguntaAdmin(admin.ModelAdmin):
     @admin.display(description="Estado", boolean=True)
     def estado(self, obj):
         return bool(obj.respuesta)
+
+    @admin.display(description="Acción")
+    def accion_boton(self, obj):
+        url = reverse('admin:preguntas_pregunta_change', args=[obj.pk])
+        if obj.respuesta:
+            return format_html('<a class="tea-mo-btn-accion tea-mo-btn-ver" href="{}">Ver</a>', url)
+        return format_html('<a class="tea-mo-btn-accion" href="{}">Responder</a>', url)
 
     def save_model(self, request, obj, form, change):
         es_primera_respuesta = bool(obj.respuesta) and not obj.respondido_por

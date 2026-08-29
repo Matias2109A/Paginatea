@@ -269,6 +269,39 @@ fieldset.module {
     font-weight: 600;
 }
 
+
+
+.tea-mo-btn-accion,
+.tea-mo-btn-accion:link,
+.tea-mo-btn-accion:visited {
+    display: inline-block;
+    background: #A38C74;
+    color: #FAF7F2 !important;
+    text-decoration: none;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+ 
+.tea-mo-btn-accion:hover {
+    background: #4A433A;
+    color: #FAF7F2 !important;
+}
+ 
+.tea-mo-btn-accion.tea-mo-btn-ver,
+.tea-mo-btn-accion.tea-mo-btn-ver:link,
+.tea-mo-btn-accion.tea-mo-btn-ver:visited {
+    background: #EFE9DF;
+    color: #4A433A !important;
+    border: 1px solid #D8CFC4;
+}
+ 
+.tea-mo-btn-accion.tea-mo-btn-ver:hover {
+    background: #D8CFC4;
+    color: #4A433A !important;
+}
+
 @media (max-width: 767px) {
     .tea-mo-grid,
     #content-main {
