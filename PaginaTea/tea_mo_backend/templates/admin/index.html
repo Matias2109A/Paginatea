@@ -1,0 +1,65 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+    <div class="tea-mo-dashboard">
+        <p class="tea-mo-saludo">Hola, {{ request.user.first_name|default:request.user.username }} 👋</p>
+        <p class="tea-mo-subtitulo">Esto es lo que está pasando hoy en TEA-MO.</p>
+
+        <div class="tea-mo-grid">
+            <div class="tea-mo-card {% if preguntas_pendientes > 0 %}tea-mo-card-alerta{% else %}tea-mo-card-ok{% endif %}">
+                <span class="tea-mo-card-icono">📩</span>
+                <span class="tea-mo-card-numero">{{ preguntas_pendientes }}</span>
+                <span class="tea-mo-card-label">
+                    {% if preguntas_pendientes == 1 %}Pregunta sin responder{% else %}Preguntas sin responder{% endif %}
+                </span>
+            </div>
+
+            <div class="tea-mo-card">
+                <span class="tea-mo-card-icono">📅</span>
+                {% if proximo_evento %}
+                    <span class="tea-mo-card-numero" style="font-size: 20px;">{{ proximo_evento.titulo }}</span>
+                    <span class="tea-mo-card-label">Próximo evento — {{ proximo_evento.fecha|date:"d/m/Y" }}</span>
+                {% else %}
+                    <span class="tea-mo-card-numero" style="font-size: 20px;">—</span>
+                    <span class="tea-mo-card-label">Sin eventos próximos cargados</span>
+                {% endif %}
+            </div>
+
+            <div class="tea-mo-card">
+                <span class="tea-mo-card-icono">💬</span>
+                <span class="tea-mo-card-numero">{{ preguntas_respondidas }}</span>
+                <span class="tea-mo-card-label">Preguntas respondidas en total</span>
+            </div>
+
+            <div class="tea-mo-card">
+                <span class="tea-mo-card-icono">🗓️</span>
+                <span class="tea-mo-card-numero">{{ eventos_proximos_total }}</span>
+                <span class="tea-mo-card-label">Eventos próximos cargados</span>
+            </div>
+        </div>
+
+        <div class="tea-mo-accesos">
+            <a class="tea-mo-accion" href="{% url 'admin:preguntas_pregunta_changelist' %}?estado=pendientes">
+                📩 Responder preguntas pendientes
+            </a>
+            <a class="tea-mo-accion" href="{% url 'admin:eventos_evento_add' %}">
+                📅 Cargar un evento nuevo
+            </a>
+            <a class="tea-mo-accion tea-mo-accion-secundaria" href="{% url 'admin:eventos_evento_changelist' %}">
+                Ver todos los eventos
+            </a>
+        </div>
+
+        <p class="tea-mo-seccion-titulo">Todas las secciones</p>
+    </div>
+
+    {{ block.super }}
+{% endblock %}

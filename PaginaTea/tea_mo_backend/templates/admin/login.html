@@ -1,0 +1,11 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content_title %}
+    <p class="tea-mo-login-bienvenida">Bienvenido/a al panel de TEA-MO</p>
+{% endblock %}
