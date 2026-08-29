@@ -8,7 +8,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Poner ip 
-ALLOWED_HOSTS = ["192.168.0.75", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [""]
 
 INSTALLED_APPS = [
     'admin_interface',

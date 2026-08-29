@@ -28,8 +28,8 @@
                     <span class="tea-mo-card-numero" style="font-size: 20px;">{{ proximo_evento.titulo }}</span>
                     <span class="tea-mo-card-label">Próximo evento — {{ proximo_evento.fecha|date:"d/m/Y" }}</span>
                 {% else %}
-                    <span class="tea-mo-card-numero" style="font-size: 20px;">—</span>
-                    <span class="tea-mo-card-label">Sin eventos próximos cargados</span>
+                    <span class="tea-mo-card-numero" style="font-size: 16px; font-weight: 600;">Todavía no hay eventos</span>
+                    <a class="tea-mo-card-link" href="{% url 'admin:eventos_evento_add' %}">Cargar el primero →</a>
                 {% endif %}
             </div>
 

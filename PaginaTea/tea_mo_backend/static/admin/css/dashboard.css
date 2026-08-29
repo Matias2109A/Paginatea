@@ -302,27 +302,104 @@ fieldset.module {
     color: #4A433A !important;
 }
 
+.tea-mo-card-link {
+    color: #A38C74;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+ 
+.tea-mo-card-link:hover {
+    color: #4A433A;
+    text-decoration: underline;
+}
+
+
+#content-main .module caption a,
+#content-main .module caption a:link,
+#content-main .module caption a:visited,
+#content-main .module h2 a,
+#content-main .module h2 a:link,
+#content-main .module h2 a:visited {
+    pointer-events: none;
+    cursor: default;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+ 
 @media (max-width: 767px) {
     .tea-mo-grid,
     #content-main {
         grid-template-columns: 1fr !important;
     }
-
+ 
+    .tea-mo-card {
+        padding: 1rem;
+    }
+ 
+    .tea-mo-card-numero {
+        font-size: 26px;
+    }
+ 
+    .tea-mo-saludo {
+        font-size: 19px;
+    }
+ 
     .tea-mo-accesos {
         flex-direction: column;
     }
-
+ 
     .tea-mo-accion {
         justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
     }
-
+ 
     #content {
         padding: 0 0.75rem;
     }
 
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+ 
+    #branding img,
+    #branding .logo {
+        max-height: 50px;
+    }
+ 
+    #user-tools {
+        font-size: 12px;
+    }
+ 
+    #changelist .results,
+    #result_list {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+ 
+    #changelist-filter {
+        margin-top: 1rem;
+    }
+ 
     .submit-row input,
     .submit-row a.button {
         width: 100%;
         text-align: center;
+        box-sizing: border-box;
+    }
+ 
+    .module.aligned .form-row,
+    fieldset.module .form-row {
+        padding: 0.75rem 1rem;
+    }
+ 
+    .breadcrumbs {
+        font-size: 12px;
+        padding: 0.6rem 1rem;
     }
 }
