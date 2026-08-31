@@ -31,7 +31,7 @@
 
 .title-objetivos-princ {
     text-transform: uppercase;
-    color: var(--color-princ);
+    color: var(--bg-princ);
     letter-spacing: 0.2em;
     font-size: 0.75rem;
 }

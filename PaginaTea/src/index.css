@@ -84,3 +84,16 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+    outline: none;
+}
