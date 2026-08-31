@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'preguntas',
-    'eventos'
+    'eventos',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +116,9 @@ REST_FRAMEWORK = {
         'suscripcion_eventos': '5/hour',
     },
 }
+
+
+
 
 
 import os
