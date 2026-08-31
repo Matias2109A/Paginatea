@@ -8,7 +8,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Poner ip 
-ALLOWED_HOSTS = [""]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 INSTALLED_APPS = [
     'admin_interface',
@@ -102,8 +102,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        # Cuántas preguntas puede enviar la misma IP en ese período.
-        # Formato: 'cantidad/periodo' El formato es: 'second', 'minute', 'hour' o 'day'.
         'preguntas_post': '5/hour',
         'suscripcion_eventos': '5/hour',
     },
@@ -128,8 +126,8 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': LOGS_DIR / 'tea_mo.log',
-            'maxBytes': 5 * 1024 * 1024,  # 5 MB por archivo
-            'backupCount': 5,             # guarda hasta 5 archivos viejos y borra el resto
+            'maxBytes': 5 * 1024 * 1024, 
+            'backupCount': 5,         
             'formatter': 'detallado',
         },
         'consola': {

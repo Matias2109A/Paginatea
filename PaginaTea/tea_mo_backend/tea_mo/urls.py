@@ -53,8 +53,6 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    # Solo en desarrollo: Django sirve los archivos subidos (como el logo)
-    # él mismo. En producción, eso lo hace el servidor web (Nginx, etc.).
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -4,6 +4,8 @@ from rest_framework.pagination import PageNumberPagination
 from .models import Pregunta
 from .serializers import PreguntaSerializer
 from .utils import obtener_ip, obtener_user_agent
+from django.core import signing
+from django.http import HttpResponse
 
 logger = logging.getLogger('tea_mo')
 
@@ -41,4 +43,3 @@ class PreguntaListCreate(generics.ListCreateAPIView):
         logger.info(
             f"Nueva pregunta (id={pregunta.id}) de '{pregunta.autor_nombre}' — IP: {ip} — User-Agent: {user_agent}"
         )
-

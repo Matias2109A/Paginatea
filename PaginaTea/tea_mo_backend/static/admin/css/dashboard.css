@@ -315,6 +315,69 @@ fieldset.module {
 }
 
 
+#recent-actions-module .actionlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ 
+#recent-actions-module .actionlist li {
+    position: relative;
+    list-style: none;
+    padding: 0.75rem 1.1rem 0.75rem 1.3rem;
+    border-bottom: 1px solid #EFE9DF;
+    transition: background-color 0.12s ease;
+}
+ 
+#recent-actions-module .actionlist li:last-child {
+    border-bottom: none;
+}
+ 
+#recent-actions-module .actionlist li:hover {
+    background-color: #FAF7F2;
+}
+
+#recent-actions-module .actionlist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+}
+ 
+#recent-actions-module .actionlist li.addlink::before {
+    background: #4E9A51;
+}
+ 
+#recent-actions-module .actionlist li.changelink::before {
+    background: #A38C74;
+}
+ 
+#recent-actions-module .actionlist li.deletelink::before {
+    background: #A33A3A;
+}
+
+#recent-actions-module .actionlist li.addlink a,
+#recent-actions-module .actionlist li.changelink a,
+#recent-actions-module .actionlist li.deletelink a {
+    background-image: none !important;
+    padding-left: 0 !important;
+}
+ 
+#recent-actions-module .actionlist li a {
+    font-weight: 600;
+    color: #4A433A !important;
+    font-size: 13px;
+}
+ 
+#recent-actions-module .actionlist li p {
+    margin: 0.2rem 0 0 0;
+    color: #A38C74;
+    font-size: 12px;
+}
+
+
 #content-main .module caption a,
 #content-main .module caption a:link,
 #content-main .module caption a:visited,

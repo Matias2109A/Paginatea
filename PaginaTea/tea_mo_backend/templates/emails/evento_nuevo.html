@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"></head>
+<body style="margin:0; padding:0; background-color:#FAF7F2; font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#FAF7F2; padding:2rem 1rem;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="100%" style="max-width:480px; background-color:#ffffff; border-radius:14px; overflow:hidden; border:1px solid #D8CFC4;">
+                    <tr>
+                        <td style="background-color:#A38C74; padding:1.5rem 2rem;">
+                            <span style="color:#FAF7F2; font-size:20px; font-weight:700;">TEA-MO</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:2rem;">
+                            <h1 style="margin:0 0 1rem 0; color:#4A433A; font-size:18px;">📅 Nuevo evento</h1>
+                            <p style="color:#4A433A; font-size:16px; font-weight:700; margin:0 0 0.75rem 0;">
+                                {{ titulo }}
+                            </p>
+                            <table role="presentation" style="margin-bottom:1.25rem;">
+                                <tr>
+                                    <td style="color:#8C7660; font-size:13px; padding:0.2rem 0;">🗓️ {{ fecha }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:#8C7660; font-size:13px; padding:0.2rem 0;">🕒 {{ hora }} hs</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:#8C7660; font-size:13px; padding:0.2rem 0;">📍 {{ ubicacion }}</td>
+                                </tr>
+                            </table>
+                            {% if descripcion %}
+                            <p style="color:#4A433A; font-size:14px; line-height:1.6; margin:0 0 1.5rem 0;">
+                                {{ descripcion }}
+                            </p>
+                            {% endif %}
+                            <p style="color:#A38C74; font-size:12px; line-height:1.6; margin:0 0 1.5rem 0;">
+                                Te llega este mensaje porque te suscribiste a las notificaciones de eventos de TEA-MO.
+                            </p>
+                            <p style="margin:0; text-align:center; border-top:1px solid #EFE9DF; padding-top:1.25rem;">
+                                <a href="{{ unsubscribe_url }}" style="color:#A38C74; font-size:12px; text-decoration:underline;">
+                                    Darme de baja de estas notificaciones
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

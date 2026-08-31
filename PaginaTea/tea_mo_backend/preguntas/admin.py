@@ -117,21 +117,24 @@ class PreguntaAdmin(admin.ModelAdmin):
             self._avisar_por_email(obj)
 
     def _avisar_por_email(self, pregunta):
+        from django.template.loader import render_to_string
+        from django.utils.html import strip_tags
+        from django.core.mail import EmailMultiAlternatives
+
         asunto = "Te respondimos tu pregunta en TEA-MO"
-        cuerpo = (
-            f"Hola {pregunta.autor_nombre},\n\n"
-            f"Respondimos la pregunta que nos dejaste:\n\n"
-            f"« {pregunta.contenido} »\n\n"
-            f"Nuestra respuesta:\n{pregunta.respuesta}\n\n"
-            "También podés verla en la sección Blog de nuestra web.\n\n"
-            "Gracias por escribirnos.\n"
-            "— Equipo TEA-MO"
-        )
+        contexto = {
+                 'nombre': pregunta.autor_nombre,
+                 'pregunta': pregunta.contenido,
+                 'respuesta': pregunta.respuesta,
+                }
+        html_contenido = render_to_string('emails/respuesta_pregunta.html', contexto)
+        texto_plano = strip_tags(html_contenido)
         try:
-            send_mail(
-                asunto, cuerpo, settings.DEFAULT_FROM_EMAIL,
-                [pregunta.autor_email], fail_silently=False,
-            )
+            email = EmailMultiAlternatives(
+            asunto, texto_plano, settings.DEFAULT_FROM_EMAIL, [pregunta.autor_email],
+        )
+            email.attach_alternative(html_contenido, "text/html")
+            email.send(fail_silently=False)
             logger.info(f"Email de respuesta enviado a {pregunta.autor_email} (pregunta id={pregunta.id})")
         except Exception as e:
             logger.error(f"No se pudo enviar el email de respuesta a {pregunta.autor_email}: {e}")

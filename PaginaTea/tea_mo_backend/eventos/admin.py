@@ -6,6 +6,9 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from .models import Evento, SuscriptorEventos
 
+from django.utils.html import format_html
+from django.urls import reverse
+
 logger = logging.getLogger('tea_mo')
 
 
@@ -30,7 +33,7 @@ class ProximidadFilter(admin.SimpleListFilter):
 
 @admin.register(Evento)
 class EventoAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'fecha', 'hora', 'ubicacion', 'creado_por')
+    list_display = ('titulo', 'fecha', 'hora', 'ubicacion', 'creado_por', 'accion_boton')
     list_filter = (ProximidadFilter,)
     search_fields = ('titulo', 'ubicacion')
     ordering = ('fecha', 'hora')
@@ -41,6 +44,11 @@ class EventoAdmin(admin.ModelAdmin):
             'description': "Completá los datos y guardá. El evento aparece automáticamente en la web mientras la fecha no haya pasado.",
         }),
     )
+
+    @admin.display(description="Acción")
+    def accion_boton(self, obj):
+        url = reverse('admin:eventos_evento_change', args=[obj.pk])
+        return format_html('<a class="tea-mo-btn-accion tea-mo-btn-ver" href="{}">Editar</a>', url)
 
     def save_model(self, request, obj, form, change):
         es_nuevo = not obj.pk
@@ -53,34 +61,41 @@ class EventoAdmin(admin.ModelAdmin):
             self._avisar_suscriptores(obj)
 
     def _avisar_suscriptores(self, evento):
-        emails = list(
-            SuscriptorEventos.objects.filter(activo=True).values_list('email', flat=True)
-        )
-        if not emails:
+        from django.core import signing
+        from django.template.loader import render_to_string
+        from django.utils.html import strip_tags
+        from django.core.mail import EmailMultiAlternatives
+        from decouple import config
+
+        suscriptores = SuscriptorEventos.objects.filter(activo=True)
+        if not suscriptores.exists():
             return
 
+        backend_url = config('BACKEND_URL', default='http://127.0.0.1:8000')
         asunto = f"Nuevo evento en TEA-MO: {evento.titulo}"
-        cuerpo = (
-            f"Hola,\n\n"
-            f"Se publicó un nuevo evento en TEA-MO:\n\n"
-            f"{evento.titulo}\n"
-            f"Fecha: {evento.fecha.strftime('%d/%m/%Y')}\n"
-            f"Hora: {evento.hora.strftime('%H:%M')} hs\n"
-            f"Lugar: {evento.ubicacion}\n\n"
-            f"{evento.descripcion or ''}\n\n"
-            "Te llega este mensaje porque te suscribiste a las notificaciones de eventos "
-            "en nuestra web.\n\n"
-            "— Equipo TEA-MO"
-        )
-        try:
-            mensaje = EmailMessage(
-                asunto, cuerpo, settings.DEFAULT_FROM_EMAIL,
-                to=[settings.DEFAULT_FROM_EMAIL], bcc=emails,
-            )
-            mensaje.send(fail_silently=False)
-            logger.info(f"Notificación de evento '{evento.titulo}' enviada a {len(emails)} suscriptor(es)")
-        except Exception as e:
-            logger.error(f"No se pudo enviar la notificación del evento '{evento.titulo}': {e}")
+        enviados = 0
+
+        for suscriptor in suscriptores:
+            token = signing.dumps(suscriptor.email)
+            contexto = {
+                'titulo': evento.titulo,
+                'fecha': evento.fecha.strftime('%d/%m/%Y'),
+                'hora': evento.hora.strftime('%H:%M'),
+                'ubicacion': evento.ubicacion,
+                'descripcion': evento.descripcion,
+                'unsubscribe_url': f"{backend_url}/api/eventos/desuscribirse/{token}/",
+            }
+            html_contenido = render_to_string('emails/evento_nuevo.html', contexto)
+            texto_plano = strip_tags(html_contenido)
+            try:
+                email = EmailMultiAlternatives(asunto, texto_plano, settings.DEFAULT_FROM_EMAIL, [suscriptor.email])
+                email.attach_alternative(html_contenido, "text/html")
+                email.send(fail_silently=False)
+                enviados += 1
+            except Exception as e:
+                logger.error(f"No se pudo enviar la notificación del evento a {suscriptor.email}: {e}")
+
+        logger.info(f"Notificación de evento '{evento.titulo}' enviada a {enviados} suscriptor(es)")
 
 
 class SoloAccesoTotalMixin:

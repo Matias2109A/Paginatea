@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from django.utils import timezone
 from .models import Evento, SuscriptorEventos
 from .serializers import EventoSerializer, SuscriptorSerializer
+from django.core import signing
+from django.http import HttpResponse
+from django.shortcuts import render
 
 logger = logging.getLogger('tea_mo')
 
@@ -47,3 +50,28 @@ class SuscribirseEventos(generics.CreateAPIView):
 
         logger.info(f"Suscripción a eventos: {email} ({'nueva' if creado else 'reactivada'})")
         return Response({'email': suscriptor.email}, status=status.HTTP_201_CREATED)
+
+class DesuscribirseEventos(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, token):
+        try:
+            email = signing.loads(
+                token,
+                max_age=60 * 60 * 24 * 365
+            )
+        except signing.BadSignature:
+            return render(
+                request,
+                "eventos/desuscripcion.html",
+                {"error": True},
+                status=400
+            )
+
+        SuscriptorEventos.objects.filter(email=email).update(activo=False)
+
+        return render(
+            request,
+            "eventos/desuscripcion.html",
+            {"error": False}
+        )

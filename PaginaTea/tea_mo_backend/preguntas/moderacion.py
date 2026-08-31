@@ -1,7 +1,6 @@
 import re
 
-# Lista de palabras prohibidas, en minúscula y sin acentos.
-# Agregá o sacá palabras acá según haga falta — una por línea, en minúscula.
+
 PALABRAS_PROHIBIDAS = {
     "boludo",
     "pelotudo",
@@ -15,7 +14,6 @@ PALABRAS_PROHIBIDAS = {
     "carajo",
     "conchudo",
     "gil",
-    # sumá las que necesites
 }
 
 
