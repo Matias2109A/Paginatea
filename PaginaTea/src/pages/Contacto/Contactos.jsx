@@ -91,7 +91,7 @@ export default function Contactos() {
                 <div className='contactos-cta'>
                     <h2 className='nunito-font contactos-cta-title'>¿Querés sumarte?</h2>
                     <p className='lora-font contactos-cta-desc'>
-                        Si sos familia de una persona autista o querés colaborar con nuestra comunidad, escribinos. ¡Nos encantaría conocerte!
+                        Si sos familia de una persona con TEA o querés colaborar con nuestra comunidad, escribinos. ¡Nos encantaría conocerte!
                     </p>
                 </div>
             </section>

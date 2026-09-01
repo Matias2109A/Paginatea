@@ -31,7 +31,7 @@ export default function Valores() {
 
     return (
         <section className='valores-conteiner'>
-            <h2 className='nunito-font title-valores'>Misión · Visión · Valores</h2>
+            <h2 className='nunito-font title-valores'>Misión · Valores · Visión</h2>
             <div className='cards-conteiner'>
                 {valoresData.map((v, i) => (
                     <div key={i} className={`card-valores ${v.destacada ? 'card-mid-valores' : ''}`}>
@@ -42,7 +42,7 @@ export default function Valores() {
                         >
                             <span className={`nunito-font card-letter ${v.destacada ? 'mid-letter' : ''}`}>{v.letra}</span>
                             <h3 className={`nunito-font title-card-valores ${v.destacada ? 'mid-card' : ''}`}>{v.titulo}</h3>
-                            <span className={`card-valores-icono ${v.destacada ? 'mid-card' : ''}`} style={{marginLeft: 'auto'}}>
+                            <span className={`card-valores-icono ${v.destacada ? 'mid-card' : ''}`}>
                                 {abierta === i ? '−' : '+'}
                             </span>
                         </button>

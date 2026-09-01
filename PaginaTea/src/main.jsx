@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import Nav from './components/Nav'
 import PaginaPrincipal from './PaginaPrincipal'
-import Blog from './pages/Blog'
-import Eventos from './pages/Eventos'
-import Contactos from './pages/Contactos'
+import Blog from './pages/Blog/Blog'
+import Eventos from './pages/Eventos/Eventos'
+import Contactos from './pages/Contacto/Contactos'
 import Fotter from './components/Footer'
 
 createRoot(document.getElementById('root')).render(

@@ -28,7 +28,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
     margin: 0 auto;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .card-nes {
