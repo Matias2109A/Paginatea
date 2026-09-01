@@ -1,3 +1,20 @@
+.header-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header-visible {
+    transform: translateY(0);
+}
+
+.header-oculto {
+    transform: translateY(-100%);
+}
+
 nav {
     background-color: var(--color-princ);
     display: flex;
