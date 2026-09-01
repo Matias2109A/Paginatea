@@ -111,7 +111,7 @@ export default function Blog() {
     }
 
     return (
-        <main>
+        <main className='blog-main'>
             <section className='blog-container'>
                 <span className='blog-icon'>✍️</span>
                 <h1 className='nunito-font blog-title'>Preguntas y respuestas</h1>

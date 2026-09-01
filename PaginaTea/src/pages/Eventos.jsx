@@ -91,7 +91,7 @@ export default function Eventos() {
     }
 
     return (
-        <main>
+        <main className='eventos-main'>
             <section className='eventos-container'>
                 <span className='eventos-icon'>📌</span>
                 <h1 className='nunito-font eventos-title'>Eventos</h1>

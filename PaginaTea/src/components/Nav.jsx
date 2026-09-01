@@ -1,19 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Nav.css';
+import { useEffect } from 'react';
 
 const linkClass = ({ isActive }) =>
     `nunito-btn-font nav-link${isActive ? ' active' : ''}`;
 
 export default function Nav() {
     const [menuAbierto, setMenuAbierto] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const ultimoScrollY = useRef(0);
 
     function cerrarMenu() {
         setMenuAbierto(false);
     }
 
+    useEffect(() => {
+        const controlarScroll = () => {
+            const scrollActual = window.scrollY;
+
+            if (scrollActual > ultimoScrollY.current && scrollActual > 70) {
+                setVisible(false);
+                setMenuAbierto(false);
+            } else {
+                setVisible(true);
+            }
+
+            ultimoScrollY.current = scrollActual;
+        };
+
+        window.addEventListener('scroll', controlarScroll);
+
+        return () => {
+            window.removeEventListener('scroll', controlarScroll);
+        };
+    }, []);
+
     return (
-        <header>
+        <header className={`header-nav ${visible ? 'header-visible' : 'header-oculto'}`}>
             <nav>
                 <img src="src/assets/logo.jpeg" alt="Logo" />
 

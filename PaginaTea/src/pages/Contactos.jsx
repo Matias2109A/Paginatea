@@ -11,7 +11,7 @@ const abrirCorreo = (e) => {
 
 export default function Contactos() {
     return (
-        <main>
+        <main className='contactos-main'>
             <section className='contactos-container'>
                 <h1 className='nunito-font contactos-title'>Contactos</h1>
                 <p className='lora-font contactos-desc'>
