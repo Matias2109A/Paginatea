@@ -27,6 +27,13 @@
     margin-top: 1.25rem
 }
 
+.subtitle-neurodiv {
+    color: var(--acents);
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+    margin-top: 1.25rem
+}
+
 .burbujas {
     display: flex;
     flex-direction: row;
@@ -38,7 +45,7 @@
 .burbuja-ind {  
     background-color: var(--color-princ);
     color: var(--bg-princ);
-    font-size: 0.875rem;
+    font-size: 1rem;
     padding-block: 0.375rem;
     padding-inline: 1rem;
     border-radius: calc(infinity * 1px);

@@ -12,10 +12,10 @@ return (
         <p className="nunito-btn-font footer__location">San Martín 1900, Carcarañá, Santa Fe · Argentina</p>
 
           <div className="footer__nav">
-              <Link className="nunito-btn-font footer__nav-link" to="/">Inicio</Link>
-              <Link className="nunito-btn-font footer__nav-link" to="/blog">Blog</Link>
-              <Link className="nunito-btn-font footer__nav-link" to="/eventos">Eventos</Link>
-              <Link className="nunito-btn-font footer__nav-link" to="/contactos">Contactos</Link>
+              <Link className="nunito-btn-font footer__nav-link" to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Inicio</Link>
+              <Link className="nunito-btn-font footer__nav-link" to="/blog" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Blog</Link>
+              <Link className="nunito-btn-font footer__nav-link" to="/eventos" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Eventos</Link>
+              <Link className="nunito-btn-font footer__nav-link" to="/contactos" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Contactos</Link>
           </div>
       </div>
 

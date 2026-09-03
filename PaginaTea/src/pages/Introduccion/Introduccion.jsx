@@ -3,7 +3,7 @@ import infiniteImg from '../../assets/img-infinito.svg';
 
 export default function Introduccion() {
     return (
-        <section className='conteiner-introduccion'>
+        <section className='conteiner-introduccion' id='introduccion'>
             <div className='introduccion'>
                 <img className='infinite-img' src={infiniteImg} />
                 <h2 className='nunito-font title-introduccion'>Introducción</h2>

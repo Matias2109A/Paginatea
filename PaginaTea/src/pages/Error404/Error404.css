@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página no encontrada — TEA-MO</title>
-    <style>
-        body {
+        .error404 {
             margin: 0;
             min-height: 100vh;
             display: flex;
@@ -25,18 +18,18 @@
             font-size: 48px;
             margin-bottom: 1rem;
         }
-        h1 {
+        .title-error {
             font-size: 22px;
             margin: 0 0 0.5rem 0;
             color: #4A433A;
         }
-        p {
+        .txt-error {
             font-size: 15px;
             line-height: 1.6;
             color: #A38C74;
             margin: 0 0 1.5rem 0;
         }
-        a.boton {
+        .boton {
             display: inline-block;
             background-color: #A38C74;
             color: #FAF7F2;
@@ -47,17 +40,6 @@
             font-weight: 600;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        a.boton:hover {
+        .boton:hover {
             background-color: #4A433A;
         }
-    </style>
-</head>
-<body>
-    <div class="caja">
-        <div class="icono">🧩</div>
-        <h1>No encontramos esta página</h1>
-        <p>Puede que el enlace esté roto o que la dirección tenga un error. Volvé al inicio para seguir navegando.</p>
-        <a class="boton" href="/">Volver al inicio</a>
-    </div>
-</body>
-</html>

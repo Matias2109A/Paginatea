@@ -8,6 +8,7 @@ import Blog from './pages/Blog/Blog'
 import Eventos from './pages/Eventos/Eventos'
 import Contactos from './pages/Contacto/Contactos'
 import Fotter from './components/Footer'
+import Error404 from './pages/Error404/Error404'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,8 @@ createRoot(document.getElementById('root')).render(
       <Route path="/blog" element={<Blog />} />
       <Route path="/eventos" element={<Eventos />} />
       <Route path="/contactos" element={<Contactos />} />
+
+      <Route path="*" element={<Error404 />} />
     </Routes>
     <Fotter />
   </BrowserRouter>

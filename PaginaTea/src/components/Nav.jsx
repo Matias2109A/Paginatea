@@ -53,10 +53,22 @@ export default function Nav() {
                 </button>
 
                 <ul className={menuAbierto ? 'nav-abierto' : ''}>
-                    <NavLink className={linkClass} to="/" end onClick={cerrarMenu}>Inicio</NavLink>
-                    <NavLink className={linkClass} to="/blog" onClick={cerrarMenu}>Blog</NavLink>
-                    <NavLink className={linkClass} to="/eventos" onClick={cerrarMenu}>Eventos</NavLink>
-                    <NavLink className={linkClass} to="/contactos" onClick={cerrarMenu}>Contactos</NavLink>
+                    <NavLink className={linkClass} to="/" end onClick={() => {
+                        cerrarMenu();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>Inicio</NavLink>
+                    <NavLink className={linkClass} to="/blog" onClick={() => {
+                        cerrarMenu();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>Blog</NavLink>
+                    <NavLink className={linkClass} to="/eventos" onClick={() => {
+                        cerrarMenu();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>Eventos</NavLink>
+                    <NavLink className={linkClass} to="/contactos" onClick={() => {
+                        cerrarMenu();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>Contactos</NavLink>
                 </ul>
             </nav>
         </header>
