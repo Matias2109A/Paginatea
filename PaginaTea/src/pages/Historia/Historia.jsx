@@ -1,5 +1,5 @@
 import './Historia.css'
-import historiaImg from '../../assets/imgs-inicio/img-figma1.jpg'
+import historiaImg from '../../assets/imgs-inicio/img-tea-mo-1.jpg'
 
 export default function Historia() {
     return (

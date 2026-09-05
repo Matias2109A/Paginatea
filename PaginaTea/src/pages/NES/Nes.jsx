@@ -29,7 +29,7 @@ export default function Nes() {
     return (
         <section id='nes' className='nes-conteiner'>
             <div className="nes">
-                <h2 className='nunito-font title-nes'>No están solos</h2>
+                <h2 className='nunito-font title-nes'>TEA-COMPAÑAMOS</h2>
                 <p className='nunito-btn-font desc-nes'>Una guía para la familia</p>
 
                 <div className='cards-nes-conteiner'>

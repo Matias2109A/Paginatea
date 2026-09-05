@@ -1,6 +1,6 @@
 import './Neurodivergencia.css';
-import NeurodivImg1 from '../../assets/imgs-inicio/img-figma2.jpg'
-import NeurodivImg2 from '../../assets/imgs-inicio/img-figma3.jpg'
+import NeurodivImg1 from '../../assets/imgs-inicio/img-tea-mo-4.jpg'
+import NeurodivImg2 from '../../assets/imgs-inicio/img-tea-mo-3.jpg'
 
 export default function Neurodivergencia() {
     return (
