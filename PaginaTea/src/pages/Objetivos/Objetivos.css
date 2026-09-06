@@ -26,14 +26,13 @@
     background-color: rgba(255, 255, 255, 0.06);
     border-radius: 1.5rem;
     margin-bottom: 1.5rem;
-    /* width: 55%; */
 }
 
 .title-objetivos-princ {
     text-transform: uppercase;
     color: var(--bg-princ);
     letter-spacing: 0.2em;
-    font-size: 0.75rem;
+    font-size: 1rem;
 }
 
 .desc-objetivos-princ {

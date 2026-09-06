@@ -1,5 +1,5 @@
 import './Impacto.css'
-import imgFigma4 from '../../assets/imgs-inicio/img-figma4.jpg'
+import imgImpacto from '../../assets/imgs-inicio/img-tea-mo-2.jpg'
 
 export default function Impacto() {
     return(
@@ -12,7 +12,7 @@ export default function Impacto() {
                     <p className='lora-font parrafo-impacto'>Además, el acceso a información confiable, recursos y orientación les permite afrontar cada etapa con mayor tranquilidad y seguridad, facilitando la toma de decisiones y el acceso a los apoyos necesarios.</p>
                 </div>
                 <div>
-                    <img className='img-impacto' src={imgFigma4}/>
+                    <img className='img-impacto' src={imgImpacto}/>
                 </div>
             </div>
         </section>
