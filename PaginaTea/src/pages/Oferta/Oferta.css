@@ -132,9 +132,14 @@
         grid-template-columns: 1fr;
     }
 
+    .btn-oferta {
+        padding-inline: 0.9rem;
+        font-size: 0.81rem;
+    }
+
     .btns-oferta {
-        flex-wrap: wrap;
         justify-content: center;
+        font-size: 0.5rem;
     }
 
     .title-oferta {

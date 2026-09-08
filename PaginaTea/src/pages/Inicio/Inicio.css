@@ -134,7 +134,7 @@
 }
 
 .hero-card-title {
-    color: #d42db0;
+    color: #C65D9F;
     font-size: 1.875rem;
     line-height: 2.25rem;
 }
@@ -147,15 +147,15 @@
 }
 
 .card-1 {
-    color: #1986ec;
+    color: #5A9BE6;
 }
 
 .card-3 {
-    color: #f3900f;
+    color: #DE873E;
 }
 
 .card-4 {
-    color: #2c9c1d;
+    color: #4FA65B;
 }
 
 @media (max-width: 768px) {
