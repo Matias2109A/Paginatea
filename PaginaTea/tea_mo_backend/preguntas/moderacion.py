@@ -3,17 +3,28 @@ import re
 
 PALABRAS_PROHIBIDAS = {
     "boludo",
+    "boluda",
     "pelotudo",
+    "pelotuda",
     "forro",
+    "forra",
     "puto",
     "puta",
     "mierda",
     "idiota",
     "estupido",
+    "estupida",
     "imbecil",
     "carajo",
     "conchudo",
     "gil",
+    "tarado",
+    "tarada",
+    "retrasado",
+    "retrasada",
+    "mongolico",
+    "mongolica",
+
 }
 
 

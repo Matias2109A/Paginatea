@@ -1,19 +1,19 @@
-[
+﻿[
 {
   "model": "admin_interface.theme",
   "pk": 3,
   "fields": {
     "name": "TeaMo",
     "active": true,
-    "title": "Administración de Tea-Mo",
+    "title": "Administraci¾n de Tea-Mo",
     "title_color": "#FAF7F2",
     "title_visible": true,
-    "logo": "admin-interface/logo/logo.jpeg",
+    "logo": "admin-interface/logo/favicon.jpeg",
     "logo_color": "#FFFFFF",
     "logo_max_width": 400,
     "logo_max_height": 100,
     "logo_visible": true,
-    "favicon": "",
+    "favicon": "admin-interface/favicon/favicon.jpeg",
     "env_name": "Tea-Mo",
     "env_color": "#A38C74",
     "env_visible_in_header": true,

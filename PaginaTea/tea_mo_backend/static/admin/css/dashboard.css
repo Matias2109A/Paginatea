@@ -197,6 +197,20 @@ body.login .module {
     align-items: start;
 }
 
+body.dashboard #content-main {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.1rem;
+}
+
+body.dashboard #content-main .module {
+    width: 550px !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    margin: 0 auto !important;
+}
+
 #content-main .module {
     border-radius: 12px;
     overflow: hidden;
@@ -466,3 +480,126 @@ fieldset.module {
         padding: 0.6rem 1rem;
     }
 }
+html[data-theme="dark"] {
+    --primary: #A38C74;
+    --body-fg: #4A433A;
+    --body-bg: #FAF7F2;
+    --body-quiet-color: #8C7660;
+    --border-color: #D8CFC4;
+    --darkened-bg: #FAF7F2;
+    --selected-bg: #EFE9DF;
+    --selected-row: #EFE9DF;
+}
+
+.theme-toggle {
+    display: none !important;
+}
+
+.messagelist {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+}
+ 
+.messagelist li {
+    border-radius: 10px;
+    padding: 0.9rem 1.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 14px;
+    border: 1px solid transparent;
+    background-image: none !important;
+}
+ 
+.messagelist li.success {
+    background-color: #E8F3E9;
+    border-color: #B7D9BA;
+    color: #2E7D32 !important;
+}
+ 
+.messagelist li.warning {
+    background-color: #FFF6E5;
+    border-color: #F0D9A0;
+    color: #8A6100 !important;
+}
+ 
+.messagelist li.error {
+    background-color: #FDF1F1;
+    border-color: #E7B2B2;
+    color: #A33A3A !important;
+}
+
+.tea-mo-ayuda {
+    background-color: #ffffff;
+    border: 1px solid #D8CFC4;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0 1.5rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+ 
+.tea-mo-ayuda-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #EFE9DF;
+}
+ 
+.tea-mo-ayuda-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #EFE9DF;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+ 
+.tea-mo-ayuda-titulo {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4A433A;
+}
+ 
+.tea-mo-ayuda-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.6rem 0;
+}
+ 
+.tea-mo-ayuda-item + .tea-mo-ayuda-item {
+    border-top: 1px solid #F5F1EB;
+}
+ 
+.tea-mo-ayuda-numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #A38C74;
+    color: #FAF7F2;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+ 
+.tea-mo-ayuda-item p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8C7660;
+}
+ 
+.tea-mo-ayuda-item strong {
+    color: #4A433A;
+}
+
+

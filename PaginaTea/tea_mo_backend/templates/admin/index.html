@@ -13,6 +13,29 @@
         <p class="tea-mo-saludo">Hola, {{ request.user.first_name|default:request.user.username }} 👋</p>
         <p class="tea-mo-subtitulo">Esto es lo que está pasando hoy en TEA-MO.</p>
 
+        <div class="tea-mo-ayuda">
+            <div class="tea-mo-ayuda-header">
+                <span class="tea-mo-ayuda-icono">📋</span>
+                <p class="tea-mo-ayuda-titulo">Guía rápida</p>
+            </div>
+
+            <div class="tea-mo-ayuda-item">
+                <span class="tea-mo-ayuda-numero">1</span>
+                <p><strong>Para responder una pregunta:</strong> entrá a "📩 Preguntas", hacé clic en "Responder" en la que quieras contestar, escribí la respuesta y guardá.</p>
+            </div>
+
+            <div class="tea-mo-ayuda-item">
+                <span class="tea-mo-ayuda-numero">2</span>
+                <p><strong>Para cargar un evento:</strong> entrá a "📅 Eventos" → "Agregar", completá título, fecha, hora y lugar, y guardá.</p>
+            </div>
+
+            <div class="tea-mo-ayuda-item">
+                <span class="tea-mo-ayuda-numero">3</span>
+                <p>Los cambios se publican solos en la web — no hace falta hacer nada más.</p>
+            </div>
+        </div>
+    </div>  
+
         <div class="tea-mo-grid">
             <div class="tea-mo-card {% if preguntas_pendientes > 0 %}tea-mo-card-alerta{% else %}tea-mo-card-ok{% endif %}">
                 <span class="tea-mo-card-icono">📩</span>
