@@ -1,11 +1,49 @@
-{% extends "admin/login.html" %}
+{% extends "admin/base_site.html" %}
 {% load static %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
 
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'admin/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/login_teamo.css' %}">
 {% endblock %}
 
-{% block content_title %}
-    <p class="tea-mo-login-bienvenida">Bienvenido/a al panel de TEA-MO</p>
+{% block content %}
+<div class="tea-mo-login-wrap">
+    <div class="tea-mo-login-card">
+        <div class="tea-mo-login-icono">💙</div>
+        <p class="tea-mo-login-titulo">Bienvenido/a al panel de TEA-MO</p>
+        <p class="tea-mo-login-subtitulo">Ingresá tus datos para continuar</p>
+
+        {% if form.errors %}
+            <p class="tea-mo-login-error">Usuario o contraseña incorrectos. Probá de nuevo.</p>
+        {% endif %}
+
+        <form action="{{ app_path }}" method="post" id="tea-mo-login-form">
+            {% csrf_token %}
+            <div class="tea-mo-login-field">
+                <label for="id_username">Usuario</label>
+                {{ form.username }}
+            </div>
+            <div class="tea-mo-login-field">
+                <label for="id_password">Contraseña</label>
+                {{ form.password }}
+                <input type="hidden" name="next" value="{{ next }}">
+            </div>
+            <button type="submit" class="tea-mo-login-btn">Ingresar</button>
+        </form>
+
+        <p class="tea-mo-login-footer">
+            © {% now "Y" %} TEA-MO — Comunidad de concientización sobre el autismo<br>
+            Carcarañá · Santa Fe · Argentina
+        </p>
+    </div>
+</div>
 {% endblock %}
+
+

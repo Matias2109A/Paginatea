@@ -1,0 +1,434 @@
+body.login {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(163, 140, 116, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(163, 140, 116, 0.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #FAF7F2 0%,
+            #EFE9DF 100%
+        );
+
+    min-height: 100vh;
+
+    color: #4A433A;
+}
+
+
+
+
+
+body.login #header {
+    width: 307px;
+    max-width: calc(100% - 2rem);
+    min-height: 0;
+    margin: 2rem auto 0;
+    padding: 0px !important;
+    margin-bottom: -15px !important;
+    margin-top: -20px !important;
+    background: #A38C74 !important;
+    border-radius: 22px 22px 0 0;
+    box-shadow:
+        0 20px 45px rgba(74, 67, 58, 0.12);
+    position: relative;
+    z-index: 2;
+}
+
+
+
+
+body.login #branding {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 1.7rem 1rem 1.5rem;
+
+    box-sizing: border-box;
+}
+
+
+
+
+body.login #branding img {
+    display: block;
+
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+
+    background: #FAF7F2;
+
+    padding: 7px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    margin: 0 0 0.8rem;
+
+    box-shadow:
+        0 5px 14px rgba(74, 67, 58, 0.15);
+}
+
+
+
+
+body.login #branding h1,
+body.login #branding h1 a {
+    color: #FFFFFF !important;
+
+    font-size: 22px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1.2;
+
+    text-decoration: none !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    letter-spacing: -0.2px;
+}
+
+
+
+body.login #user-tools {
+    display: none !important;
+}
+
+
+
+
+body.login .tea-mo-login-wrap {
+    min-height: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 0 1rem 3rem;
+
+    box-sizing: border-box;
+}
+
+
+
+
+body.login .tea-mo-login-card {
+    width: 100%;
+
+    max-width: 410px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #D8CFC4;
+
+    border-top: none;
+
+    border-radius: 0 0 22px 22px;
+
+    box-shadow:
+        0 20px 45px rgba(74, 67, 58, 0.12),
+        0 4px 12px rgba(74, 67, 58, 0.06);
+
+    padding: 2.5rem 2.5rem 2rem;
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+
+
+.tea-mo-login-titulo {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    color: #4A433A;
+
+    margin: 0 0 0.45rem;
+
+    letter-spacing: -0.2px;
+}
+
+
+.tea-mo-login-subtitulo {
+    font-size: 13px;
+
+    color: #A38C74;
+
+    margin: 0 0 2rem;
+
+    line-height: 1.5;
+}
+
+
+.tea-mo-login-error {
+    background-color: #FDF1F1;
+
+    border: 1px solid #E7B2B2;
+
+    color: #A33A3A;
+
+    border-radius: 11px;
+
+    padding: 0.8rem 1rem;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    margin: 0 0 1.4rem;
+
+    text-align: left;
+}
+
+
+#tea-mo-login-form {
+    text-align: left;
+}
+
+.tea-mo-login-field {
+    margin-bottom: 1.25rem;
+}
+
+
+.tea-mo-login-field label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #6F6254;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    margin-bottom: 0.5rem;
+}
+
+
+.tea-mo-login-field input#id_username,
+.tea-mo-login-field input#id_password {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 0.85rem 1rem;
+
+    font-size: 14px;
+
+    border: 1px solid #D8CFC4;
+
+    border-radius: 11px;
+
+    background-color: #FAF7F2;
+
+    color: #4A433A;
+
+    font-family: inherit;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.tea-mo-login-field input::placeholder {
+    color: #B5A99C;
+}
+
+
+.tea-mo-login-field input#id_username:focus,
+.tea-mo-login-field input#id_password:focus {
+    outline: none;
+
+    border-color: #A38C74;
+
+    background-color: #FFFFFF;
+
+    box-shadow:
+        0 0 0 3px rgba(163, 140, 116, 0.12);
+
+    transform: translateY(-1px);
+}
+
+
+.tea-mo-login-btn {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 1.7rem;
+
+    padding: 0.9rem 1rem;
+
+    background: linear-gradient(
+        135deg,
+        #A38C74,
+        #927A62
+    );
+
+    color: #FFFFFF;
+
+    border: none;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    box-shadow:
+        0 7px 16px rgba(163, 140, 116, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.tea-mo-login-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #4A433A,
+        #5B5146
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 20px rgba(74, 67, 58, 0.20);
+}
+
+
+.tea-mo-login-btn:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 5px 10px rgba(74, 67, 58, 0.15);
+}
+
+
+.tea-mo-login-footer {
+    margin: 2rem 0 0;
+
+    padding-top: 1.25rem;
+
+    border-top: 1px solid #EFE9DF;
+
+    text-align: center;
+
+    color: #A38C74;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+@media (max-width: 500px) {
+    html, body.login {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    body.login #header {
+        position: relative !important;
+        box-sizing: border-box !important;
+        margin-top: 100px !important;
+        width: calc(100% - 2rem) !important;
+        max-width: 410px !important;
+        margin: 2.5rem auto 1rem auto !important; 
+        padding: 0 !important;
+        border-radius: 18px !important;
+        box-shadow: 0 8px 25px rgba(74, 67, 58, 0.12) !important;
+    }
+
+    body.login #branding {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 1.8rem 1rem 1.4rem !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    body.login #branding img {
+        width: 76px !important;
+        height: 76px !important;
+        margin: 0 auto 0.8rem auto !important;
+        display: block !important;
+        box-shadow: 0 4px 12px rgba(74, 67, 58, 0.15);
+    }
+
+    body.login #branding h1,
+    body.login #branding h1 a {
+        font-size: 19px !important;
+        text-align: center !important;
+    }
+    body.login .tea-mo-login-wrap {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 0 1rem 2.5rem !important;
+    }
+
+    body.login .tea-mo-login-card {
+        width: 100% !important;
+        max-width: 410px !important;
+        margin: 0 auto !important;
+        border: 1px solid #D8CFC4 !important;
+        border-radius: 18px !important;
+        padding: 2rem 1.5rem 1.5rem !important;
+        box-shadow: 0 10px 30px rgba(74, 67, 58, 0.1) !important;
+    }
+
+    .tea-mo-login-titulo {
+        font-size: 19px !important;
+    }
+
+    .tea-mo-login-subtitulo {
+        margin-bottom: 1.5rem !important;
+    }
+}

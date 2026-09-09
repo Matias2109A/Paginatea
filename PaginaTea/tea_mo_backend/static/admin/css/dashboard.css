@@ -142,27 +142,6 @@ body.login #content {
     max-width: 420px;
 }
 
-body.login #container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-.tea-mo-login-bienvenida {
-    text-align: center;
-    font-size: 16px;
-    color: var(--body-quiet-color);
-    margin: 0 0 1rem 0;
-}
-
-body.login .module {
-    border-radius: 14px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    padding: 2rem 1.75rem;
-}
-
 #content-related {
     border-radius: 12px;
     border: 1px solid var(--border-color);
@@ -602,4 +581,54 @@ html[data-theme="dark"] {
     color: #4A433A;
 }
 
+body.login {
+    background: linear-gradient(160deg, #FAF7F2 0%, #EFE9DF 100%);
+}
+ 
+body.login #container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 90px); 
+    padding: 2rem 1rem;
+}
+ 
+body.login #content {
+    max-width: 400px;
+    width: 100%;
+}
+ 
+body.login #content-title,
+body.login .breadcrumbs {
+    display: none;
+}
+ 
+.tea-mo-login-icono {
+    font-size: 32px;
+    margin-bottom: 0.5rem;
+}
+ 
+.tea-mo-login-subtitulo {
+    font-size: 13px;
+    color: #A38C74;
+    margin: 0 0 1.75rem 0;
+}
+
+body.login .module {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    text-align: left;
+}
+ 
+ 
+body.login .errornote {
+    border-radius: 10px;
+    background-color: #FDF1F1;
+    border: 1px solid #E7B2B2;
+    color: #A33A3A !important;
+    padding: 0.85rem 1rem;
+    font-size: 13px;
+    margin-bottom: 1.25rem;
+}
 
