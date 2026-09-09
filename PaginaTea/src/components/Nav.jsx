@@ -6,6 +6,10 @@ import { useEffect } from 'react';
 const linkClass = ({ isActive }) =>
     `nunito-btn-font nav-link${isActive ? ' active' : ''}`;
 
+const linkClassAdmin = ({ isActive }) =>
+    `nunito-btn-font btn-admin nav-link${isActive ? ' active' : ''}`;
+
+
 export default function Nav() {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [visible, setVisible] = useState(true);
@@ -69,6 +73,10 @@ export default function Nav() {
                         cerrarMenu();
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}>Contactos</NavLink>
+                    <NavLink className={linkClassAdmin} to="http://127.0.0.1:8000/admin" target="_blank" rel="noopener noreferrer" onClick={() => {
+                        cerrarMenu();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>Panel de Administrador</NavLink>
                 </ul>
             </nav>
         </header>

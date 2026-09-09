@@ -74,6 +74,19 @@ nav a {
     border-radius: 2px;
 }
 
+.btn-admin {
+    background-color: var(--bg-princ);
+    color: var(--color-princ);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-admin:hover {
+    background-color: var(--acents);
+    color: var(--bg-princ);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
