@@ -47,7 +47,7 @@ def get_app_list_ordenada(self, request, app_label=None):
 admin.site.get_app_list = types.MethodType(get_app_list_ordenada, admin.site)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('panel-tea-mo/', admin.site.urls),
     path('api/', include('preguntas.urls')),
     path('api/', include('eventos.urls')),
 ]
