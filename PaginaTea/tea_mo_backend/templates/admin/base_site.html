@@ -5,3 +5,15 @@
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'admin/css/dashboard.css' %}">
 {% endblock %}
+
+{% block welcome-msg %}{% endblock %}
+
+{% block userlinks %}
+    {% if site_url %}
+        <a href="{{ site_url }}" class="tea-mo-nav-link">Ir a la Web Principal</a>
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}" class="tea-mo-nav-link">Cambiar contraseña</a>
+    {% endif %}
+    <a href="{% url 'admin:logout' %}" class="tea-mo-nav-link">Cerrar sesión</a>
+{% endblock %}

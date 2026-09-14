@@ -632,3 +632,18 @@ body.login .errornote {
     margin-bottom: 1.25rem;
 }
 
+#user-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+ 
+#user-tools .tea-mo-nav-link {
+    background-color: rgba(250, 247, 242, 0.15);
+    font-size: 12px;
+    padding: 0.45rem 0.9rem;
+}
+ 
+#user-tools .tea-mo-nav-link:hover {
+    background-color: rgba(250, 247, 242, 0.3);
+}

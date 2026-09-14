@@ -11,7 +11,6 @@
 {% block content %}
     <div class="tea-mo-dashboard">
         <p class="tea-mo-saludo">Hola, {{ request.user.first_name|default:request.user.username }} 👋</p>
-        <p class="tea-mo-subtitulo">Esto es lo que está pasando hoy en TEA-MO.</p>
 
         <div class="tea-mo-ayuda">
             <div class="tea-mo-ayuda-header">
@@ -35,7 +34,7 @@
             </div>
         </div>
     </div>  
-
+        <p class="tea-mo-subtitulo">Esto es lo que está pasando hoy en TEA-MO.</p>
         <div class="tea-mo-grid">
             <div class="tea-mo-card {% if preguntas_pendientes > 0 %}tea-mo-card-alerta{% else %}tea-mo-card-ok{% endif %}">
                 <span class="tea-mo-card-icono">📩</span>
