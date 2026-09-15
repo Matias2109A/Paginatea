@@ -15,5 +15,8 @@
     {% if user.has_usable_password %}
         <a href="{% url 'admin:password_change' %}" class="tea-mo-nav-link">Cambiar contraseña</a>
     {% endif %}
-    <a href="{% url 'admin:logout' %}" class="tea-mo-nav-link">Cerrar sesión</a>
+    <form id="logout-form" method="post" action="{% url 'admin:logout' %}" style="display:inline;">
+    {% csrf_token %}
+        <button type="submit" class="tea-mo-nav-link tea-mo-logout-btn">Cerrar sesión</button>
+    </form>
 {% endblock %}

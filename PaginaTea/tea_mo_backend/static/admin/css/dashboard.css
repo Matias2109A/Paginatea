@@ -647,3 +647,20 @@ body.login .errornote {
 #user-tools .tea-mo-nav-link:hover {
     background-color: rgba(250, 247, 242, 0.3);
 }
+
+.tea-mo-logout-btn {
+    background-color: rgba(250, 247, 242, 0.15);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FAF7F2;
+    padding: 0.45rem 0.9rem;
+    border-radius: 20px;
+    line-height: normal;
+}
+ 
+.tea-mo-logout-btn:hover {
+    background-color: rgba(250, 247, 242, 0.3);
+}
