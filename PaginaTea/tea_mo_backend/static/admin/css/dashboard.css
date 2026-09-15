@@ -458,6 +458,23 @@ fieldset.module {
         font-size: 12px;
         padding: 0.6rem 1rem;
     }
+
+     #user-tools {
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        font-size: 12px;
+        row-gap: 0.4rem;
+    }
+
+    #user-tools .tea-mo-nav-link {
+        font-size: 11px;
+        padding: 0.4rem 0.7rem;
+    }
+
+    .tea-mo-ayuda {
+        padding: 1rem;
+    }
+
 }
 html[data-theme="dark"] {
     --primary: #A38C74;
