@@ -8,7 +8,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Poner ip 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
+ALLOWED_HOSTS = ["192.168.0.75", "localhost", "127.0.0.1"]
 
 INSTALLED_APPS = [
     'admin_interface',
@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'preguntas',
     'eventos',
+    'registros',
 ]
 
 MIDDLEWARE = [
@@ -139,8 +140,8 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': LOGS_DIR / 'tea_mo.log',
-            'maxBytes': 5 * 1024 * 1024, 
-            'backupCount': 5,         
+            'maxBytes': 5 * 1024 * 1024,
+            'backupCount': 5,
             'formatter': 'detallado',
         },
         'consola': {
@@ -148,10 +149,14 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'detallado',
         },
+        'base_datos': {
+            'level': 'INFO',
+            'class': 'registros.log_handler.DatabaseLogHandler',
+        },
     },
     'loggers': {
         'tea_mo': {
-            'handlers': ['archivo', 'consola'],
+            'handlers': ['archivo', 'consola', 'base_datos'],
             'level': 'INFO',
             'propagate': False,
         },
