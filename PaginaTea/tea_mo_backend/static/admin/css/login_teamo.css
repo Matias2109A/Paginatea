@@ -432,3 +432,28 @@ body.login .tea-mo-login-card {
         margin-bottom: 1.5rem !important;
     }
 }
+
+
+
+@media (max-width: 767px) {
+    body.login {
+        padding: 0 !important;
+    }
+}
+
+body.login #container,
+body.login .main {
+    display: block !important;
+}
+
+body.login #nav-sidebar,
+body.login #toggle-nav-sidebar {
+    display: none !important;
+    width: 0 !important;
+}
+
+body.login #content {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
