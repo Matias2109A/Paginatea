@@ -10,7 +10,7 @@
 
 {% block userlinks %}
     {% if site_url %}
-        <a href="{{ site_url }}" class="tea-mo-nav-link">Ir a la Web Principal</a>
+        <a href="{{ site_url }}" target="_blank" rel="noopener noreferrer" class="tea-mo-nav-link">Ir a la Web Principal</a>
     {% endif %}
     {% if user.has_usable_password %}
         <a href="{% url 'admin:password_change' %}" class="tea-mo-nav-link">Cambiar contraseña</a>
