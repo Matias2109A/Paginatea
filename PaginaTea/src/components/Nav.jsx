@@ -73,10 +73,6 @@ export default function Nav() {
                         cerrarMenu();
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}>Contactos</NavLink>
-                    <NavLink className={linkClassAdmin} to="http://localhost:8000/panel-tea-mo/" target="_blank" rel="noopener noreferrer" onClick={() => {
-                        cerrarMenu();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}>Panel de Administrador</NavLink>
                 </ul>
             </nav>
         </header>
