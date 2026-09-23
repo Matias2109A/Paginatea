@@ -27,7 +27,8 @@ class PreguntaSerializer(serializers.ModelSerializer):
             motivo, mensaje = resultado
             ip, user_agent = self._datos_peticion()
             logger.warning(
-                f"Nombre rechazado — motivo: {motivo} — IP: {ip} — User-Agent: {user_agent} — mensaje enviado: '{value[:300]}'"
+                f"Nombre rechazado — motivo: {motivo} — mensaje enviado: '{value[:300]}'",
+                extra={'categoria': 'pregunta_rechazada', 'ip': ip, 'user_agent': user_agent},
             )
             raise serializers.ValidationError(mensaje)
         return value
@@ -38,7 +39,8 @@ class PreguntaSerializer(serializers.ModelSerializer):
             motivo, mensaje = resultado
             ip, user_agent = self._datos_peticion()
             logger.warning(
-                f"Pregunta rechazada — motivo: {motivo} — IP: {ip} — User-Agent: {user_agent} — mensaje enviado: '{value[:300]}'"
+                f"Pregunta rechazada — motivo: {motivo} — mensaje enviado: '{value[:300]}'",
+                extra={'categoria': 'pregunta_rechazada', 'ip': ip, 'user_agent': user_agent},
             )
             raise serializers.ValidationError(mensaje)
         return value

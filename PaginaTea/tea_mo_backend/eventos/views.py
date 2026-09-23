@@ -8,6 +8,7 @@ from .serializers import EventoSerializer, SuscriptorSerializer
 from django.core import signing
 from django.http import HttpResponse
 from django.shortcuts import render
+from preguntas.utils import obtener_ip
 
 logger = logging.getLogger('tea_mo')
 
@@ -48,8 +49,10 @@ class SuscribirseEventos(generics.CreateAPIView):
             suscriptor.activo = True
             suscriptor.save()
 
-        logger.info(f"Suscripción a eventos: {email} ({'nueva' if creado else 'reactivada'})")
-        return Response({'email': suscriptor.email}, status=status.HTTP_201_CREATED)
+        logger.info(
+            f"Suscripción a eventos: {email} ({'nueva' if creado else 'reactivada'})",
+            extra={'categoria': 'suscripcion', 'ip': obtener_ip(request)},
+        )
 
 class DesuscribirseEventos(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]

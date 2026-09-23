@@ -57,7 +57,10 @@ class EventoAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
         if es_nuevo:
-            logger.info(f"Nuevo evento cargado: '{obj.titulo}' ({obj.fecha}) por {request.user.username}")
+            logger.info(
+                f"Nuevo evento cargado: '{obj.titulo}' ({obj.fecha})",
+                extra={'categoria': 'evento_nuevo', 'usuario': request.user.username},
+            )
             self._avisar_suscriptores(obj)
 
     def _avisar_suscriptores(self, evento):
@@ -93,9 +96,15 @@ class EventoAdmin(admin.ModelAdmin):
                 email.send(fail_silently=False)
                 enviados += 1
             except Exception as e:
-                logger.error(f"No se pudo enviar la notificación del evento a {suscriptor.email}: {e}")
+                logger.error(
+                    f"No se pudo enviar la notificación del evento a {suscriptor.email}: {e}",
+                    extra={'categoria': 'email'},
+                )
 
-        logger.info(f"Notificación de evento '{evento.titulo}' enviada a {enviados} suscriptor(es)")
+        logger.info(
+            f"Notificación de evento '{evento.titulo}' enviada a {enviados} suscriptor(es)",
+            extra={'categoria': 'email'},
+        )
 
 
 class SoloAccesoTotalMixin:

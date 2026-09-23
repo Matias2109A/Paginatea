@@ -19,7 +19,8 @@ class PreguntaPostThrottle(throttling.AnonRateThrottle):
             ip = obtener_ip(request)
             user_agent = obtener_user_agent(request)
             logger.warning(
-                f"Envío de pregunta bloqueado por límite de frecuencia — IP: {ip} — User-Agent: {user_agent}"
+                "Envío de pregunta bloqueado por límite de frecuencia",
+                extra={'categoria': 'limite_envios', 'ip': ip, 'user_agent': user_agent},
             )
         return permitido
 
@@ -41,5 +42,6 @@ class PreguntaListCreate(generics.ListCreateAPIView):
         ip = obtener_ip(self.request)
         user_agent = obtener_user_agent(self.request)
         logger.info(
-            f"Nueva pregunta (id={pregunta.id}) de '{pregunta.autor_nombre}' — IP: {ip} — User-Agent: {user_agent}"
+            f"Nueva pregunta (id={pregunta.id}) de '{pregunta.autor_nombre}'",
+            extra={'categoria': 'pregunta_nueva', 'ip': ip, 'user_agent': user_agent},
         )
