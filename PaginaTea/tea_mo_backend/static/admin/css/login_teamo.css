@@ -26,8 +26,9 @@ body.login {
 
 
 body.login #header {
-    width: 307px;
-    max-width: calc(100% - 2rem);
+    width: 100%;
+    max-width: 410px;
+    box-sizing: border-box;
     min-height: 0;
     margin: 2rem auto 0;
     padding: 0px !important;
@@ -40,7 +41,6 @@ body.login #header {
     position: relative;
     z-index: 2;
 }
-
 
 
 
@@ -375,15 +375,15 @@ body.login .tea-mo-login-card {
     }
 
 
-    body.login #header {
+   body.login #header {
         position: relative !important;
         box-sizing: border-box !important;
-        margin-top: 100px !important;
         width: calc(100% - 2rem) !important;
         max-width: 410px !important;
-        margin: 2.5rem auto 1rem auto !important; 
+        margin: 2.5rem auto 0 !important;
+        margin-bottom: -15px !important;
         padding: 0 !important;
-        border-radius: 18px !important;
+        border-radius: 22px 22px 0 0 !important;
         box-shadow: 0 8px 25px rgba(74, 67, 58, 0.12) !important;
     }
 
@@ -411,15 +411,17 @@ body.login .tea-mo-login-card {
     body.login .tea-mo-login-wrap {
         width: 100% !important;
         box-sizing: border-box !important;
-        padding: 0 1rem 2.5rem !important;
+        padding: 0 0 2.5rem !important;
     }
 
+
     body.login .tea-mo-login-card {
-        width: 100% !important;
+        width: calc(100% - 2rem) !important;
         max-width: 410px !important;
         margin: 0 auto !important;
         border: 1px solid #D8CFC4 !important;
-        border-radius: 18px !important;
+        border-top: none !important;
+        border-radius: 0 0 22px 22px !important;
         padding: 2rem 1.5rem 1.5rem !important;
         box-shadow: 0 10px 30px rgba(74, 67, 58, 0.1) !important;
     }
@@ -456,4 +458,14 @@ body.login #content {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+}
+
+body.login .main,
+body.login #content,
+body.login #content-main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
